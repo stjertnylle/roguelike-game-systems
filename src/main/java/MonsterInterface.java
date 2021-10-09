@@ -7,7 +7,7 @@ public interface MonsterInterface {
 
     Element getElement();
 
-    int getHPValue();
+    int getCurrentHP();
 
     int getMaxHP();
 
@@ -17,7 +17,7 @@ public interface MonsterInterface {
 
     void increaseHP(int amount);
 
-    int getManaValue();
+    int getCurrentMana();
 
     int getMaxMana();
 

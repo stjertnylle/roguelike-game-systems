@@ -38,7 +38,7 @@ class BasicMonsterTest {
     void testDecreaseHealth() {
         Monster monster = new BasicMonster(10);
         monster.decreaseHP(10);
-        assertEquals(90, monster.getHPValue());
+        assertEquals(90, monster.getCurrentHP());
     }
 
     @Test
@@ -46,7 +46,7 @@ class BasicMonsterTest {
         Monster monster = new BasicMonster(10);
         monster.setHP(80);
         monster.increaseHP(10);
-        assertEquals(90, monster.getHPValue());
+        assertEquals(90, monster.getCurrentHP());
     }
 
     @Test
@@ -54,21 +54,21 @@ class BasicMonsterTest {
         Monster monster = new BasicMonster(10);
         monster.setHP(80);
         monster.increaseHP(30);
-        assertEquals(100, monster.getHPValue());
+        assertEquals(100, monster.getCurrentHP());
     }
 
     @Test
     void testDecreaseMana() {
         Monster monster = new BasicMonster(10);
         monster.decreaseMana(10);
-        assertEquals(90, monster.getManaValue());
+        assertEquals(90, monster.getCurrentMana());
     }
 
     @Test
     void testManaSetToZeroIfNegative() {
         Monster monster = new BasicMonster(10);
         monster.decreaseMana(110);
-        assertEquals(0, monster.getManaValue());
+        assertEquals(0, monster.getCurrentMana());
     }
 
     @Test
@@ -76,7 +76,7 @@ class BasicMonsterTest {
         Monster monster = new BasicMonster(10);
         monster.setMana(80);
         monster.increaseMana(10);
-        assertEquals(90, monster.getManaValue());
+        assertEquals(90, monster.getCurrentMana());
     }
 
     @Test
@@ -84,7 +84,7 @@ class BasicMonsterTest {
         Monster monster = new BasicMonster(10);
         monster.setMana(80);
         monster.increaseMana(30);
-        assertEquals(100, monster.getManaValue());
+        assertEquals(100, monster.getCurrentMana());
     }
 
 }
