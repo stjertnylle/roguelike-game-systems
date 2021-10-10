@@ -13,16 +13,6 @@ public class BasicMonster extends Monster {
     }
 
     @Override
-    void initializeWeapon() {
-
-    }
-
-    @Override
-    void initializeElement() {
-
-    }
-
-    @Override
     Action getAction(double playerHealthRatio) {
         return null;
     }

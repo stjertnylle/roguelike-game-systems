@@ -5,8 +5,8 @@ public class LifeSteal implements Action {
     private final int damage;
 
     public LifeSteal(int level) {
-        this.manaCost = level * 5;
-        this.damage = level * 2;
+        this.manaCost = level * 2;
+        this.damage = level;
     }
 
     @Override

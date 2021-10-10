@@ -31,14 +31,14 @@ public class Vampire extends Monster {
     @Override
     Action getAction(double playerHealthRatio) {
         if (playerHealthRatio < 0.2) {
-            if (getCurrentMana() > ((WindSlash)availableActions.get("Wind slash")).getManaCost())
+            if (getCurrentMana() >= ((WindSlash)availableActions.get("Wind slash")).getManaCost())
                 return availableActions.get("Wind slash");
             else
                 return availableActions.get("Light attack");
         }
-        else if (getHealthRatio() < 0.2 && getCurrentMana() > ((HealingSpell)availableActions.get("Healing spell")).getManaCost())
+        else if (getHealthRatio() < 0.2 && getCurrentMana() >= ((HealingSpell)availableActions.get("Healing spell")).getManaCost())
             return availableActions.get("Healing spell");
-        else if (getHealthRatio() < 0.5 && getCurrentMana() > ((LifeSteal)availableActions.get("Life steal")).getManaCost())
+        else if (getHealthRatio() < 0.5 && getCurrentMana() >= ((LifeSteal)availableActions.get("Life steal")).getManaCost())
             return availableActions.get("Life steal");
         else
             return availableActions.get("Heavy attack");
