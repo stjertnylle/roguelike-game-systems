@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class BasicMonster extends Monster {
 
     // This class is only for testing the basic functionality that is shared by all monsters,
@@ -25,7 +23,7 @@ public class BasicMonster extends Monster {
     }
 
     @Override
-    Action getAction() {
+    Action getAction(double playerHealthRatio) {
         return null;
     }
 }

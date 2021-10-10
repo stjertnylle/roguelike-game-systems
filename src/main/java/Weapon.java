@@ -1,3 +1,4 @@
 public interface Weapon extends Item {
-    int getDamageValue();
+    double getDamageModifier();
+    double getSpeedModifier();
 }
