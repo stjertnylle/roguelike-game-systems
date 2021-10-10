@@ -1,7 +1,5 @@
 public interface Action {
-    String getType();
-
-    int getDamageValue();
+    String getName();
 
     int getSpeed();
 }
