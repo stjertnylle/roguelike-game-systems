@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public abstract class Monster {
 
     // Instance variables
@@ -11,23 +9,19 @@ public abstract class Monster {
 
     // Constructor
     public Monster(int level) {
-        if (level < 0)
-            throw new IllegalArgumentException("Level can not be negative!");
+        if (level <= 0)
+            throw new IllegalArgumentException("Level must be higher than 0!");
         this.level = level;
         this.maxHP = level * 10;
         this.currentHP = maxHP;
         this.maxMana = level * 10;
         this.currentMana = maxMana;
         initializeAvailableActions();
-        initializeWeapon();
-        initializeElement();
     }
 
-    // Abstract methods, each monster type will have its own implementation
+    // Abstract methods, each monster type will have its own behaviour
     abstract void initializeAvailableActions();
-    abstract void initializeWeapon();
-    abstract void initializeElement();
-    abstract Action getAction();
+    abstract Action getAction(double playerHealthRatio);
 
     // Methods with implementation shared by all monsters
     public int getLevel() {
@@ -44,6 +38,12 @@ public abstract class Monster {
 
     public int getCurrentHP() {
         return currentHP;
+    }
+
+    public double getHealthRatio() {
+        double currentHP = this.currentHP;
+        double maxHP = this.maxHP;
+        return currentHP / maxHP;
     }
 
     public void increaseHP(int amount) {

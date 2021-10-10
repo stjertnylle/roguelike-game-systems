@@ -13,7 +13,13 @@ class BasicMonsterTest {
     @Test
     void testExceptionThrownIfLevelBelowZero() {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> new BasicMonster(-1));
-        assertEquals("Level can not be negative!", e.getMessage());
+        assertEquals("Level must be higher than 0!", e.getMessage());
+    }
+
+    @Test
+    void testExceptionThrownIfLevelEqualToZero() {
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> new BasicMonster(0));
+        assertEquals("Level must be higher than 0!", e.getMessage());
     }
 
     @Test
@@ -55,6 +61,13 @@ class BasicMonsterTest {
         monster.setHP(80);
         monster.increaseHP(30);
         assertEquals(100, monster.getCurrentHP());
+    }
+
+    @Test
+    void testHealthRatioCalculatedCorrectly() {
+        Monster monster = new BasicMonster(10);
+        monster.setHP(80);
+        assertEquals(0.80, monster.getHealthRatio());
     }
 
     @Test
