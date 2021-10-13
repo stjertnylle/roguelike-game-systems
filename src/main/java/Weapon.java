@@ -1,4 +1,4 @@
-public abstract class Weapon implements Item {
+public abstract class Weapon {
     private String weaponName;
 
     public Weapon(String weaponName){

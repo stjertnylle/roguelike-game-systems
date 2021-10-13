@@ -15,7 +15,7 @@ public interface Player {
 
     boolean inventoryFull();
 
-    ArrayList<Item> getInventory();
+    ArrayList<Weapon> getInventory();
 
     void consumePotion(Potion potion);
 

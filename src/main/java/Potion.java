@@ -1,4 +1,4 @@
-public abstract class Potion implements Item {
+public abstract class Potion{
     private String type;
     private int value;
 
