@@ -1,4 +1,4 @@
-public interface Spell extends Item {
+public interface Spell {
     Element getElement();
 
     int getManaCost();
