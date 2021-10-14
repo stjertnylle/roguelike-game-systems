@@ -1,4 +1,15 @@
-public interface Weapon extends Item {
-    double getDamageModifier();
-    double getSpeedModifier();
+public abstract class Weapon {
+    private String weaponName;
+
+    public Weapon(String weaponName){
+        this.weaponName = weaponName;
+    }
+
+    public abstract double getDamageModifier();
+
+    public abstract double getSpeedModifier();
+
+    public String getWeaponName() {
+        return weaponName;
+    }
 }
