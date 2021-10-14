@@ -46,9 +46,7 @@ public abstract class Monster {
         return currentHP / maxHP;
     }
 
-    public void increaseHP(int amount) {
-        currentHP = Math.min(currentHP + amount, maxHP);
-    }
+    public void increaseHP(int amount) {currentHP = Math.min(currentHP + amount, maxHP);}
 
     public void decreaseHP(int amount) {
         currentHP -= amount;
