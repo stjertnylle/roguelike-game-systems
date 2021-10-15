@@ -4,4 +4,5 @@ public interface Action {
     int getSpeed();
 
     void use(Entity user, Entity receiver);
+
 }
