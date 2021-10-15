@@ -19,6 +19,11 @@ public class LifeSteal implements Action {
         return speed;
     }
 
+    @Override
+    public void use(Entity user, Entity receiver) {
+        // TODO: Implement!
+    }
+
     public int getManaCost() {
         return manaCost;
     }

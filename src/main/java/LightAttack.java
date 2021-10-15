@@ -12,6 +12,11 @@ public class LightAttack implements Action {
     }
 
     @Override
+    public void use(Entity user, Entity receiver) {
+        // TODO: Implement!
+    }
+
+    @Override
     public String getName() {
         return name;
     }

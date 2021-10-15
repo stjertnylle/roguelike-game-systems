@@ -7,7 +7,7 @@ public abstract class Potion{
         this.value = value;
     }
 
-    public abstract void usePotion(Player player);
+    public abstract void usePotion(PlayerInterface player);
 
     public String getType() {
         return type;

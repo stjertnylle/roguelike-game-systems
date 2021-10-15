@@ -54,4 +54,10 @@ class VampireTest {
         assertEquals(HeavyAttack.class, vampire.getAction(0.2).getClass());
     }
 
+    @Test
+    void testExpRewardCalculatedCorrectly() {
+        Vampire vampire = new Vampire(10);
+        assertEquals(100, vampire.getExpReward());
+    }
+
 }
