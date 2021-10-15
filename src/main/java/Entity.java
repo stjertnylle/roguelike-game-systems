@@ -1,9 +1,9 @@
 public abstract class Entity {
-    protected int level;
-    protected int maxHP;
-    protected int currentHP;
-    protected int maxMana;
-    protected int currentMana;
+    private int level;
+    private int maxHP;
+    private int currentHP;
+    private int maxMana;
+    private int currentMana;
 
     public Entity(int level) {
         if (level <= 0)
