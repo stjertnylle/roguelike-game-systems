@@ -1,16 +1,28 @@
-public abstract class Monster extends Entity {
+public abstract class Entity {
+    private int level;
+    private int maxHP;
+    private int currentHP;
+    private int maxMana;
+    private int currentMana;
 
-    // Constructor
-    public Monster(int level) {
-        super(level);
-        initializeAvailableActions();
+    public Entity(int level) {
+        if (level <= 0)
+            throw new IllegalArgumentException("Level must be higher than 0!");
+        this.level = level;
+        initializeHP(level);
+        initializeMana(level);
     }
 
-    // Abstract methods, each monster type will have its own behaviour
-    abstract void initializeAvailableActions();
-    abstract Action getAction(double playerHealthRatio);
+    protected void initializeHP(int level) {
+        this.maxHP = level * 10;
+        this.currentHP = maxHP;
+    }
 
-    // Methods with implementation shared by all monsters
+    protected void initializeMana(int level) {
+        this.maxMana = level * 10;
+        this.currentMana = maxMana;
+    }
+
     public int getLevel() {
         return level;
     }
@@ -33,7 +45,9 @@ public abstract class Monster extends Entity {
         return currentHP / maxHP;
     }
 
-    public void increaseHP(int amount) {currentHP = Math.min(currentHP + amount, maxHP);}
+    public void increaseHP(int amount) {
+        currentHP = Math.min(currentHP + amount, maxHP);
+    }
 
     public void decreaseHP(int amount) {
         currentHP -= amount;
@@ -57,11 +71,6 @@ public abstract class Monster extends Entity {
 
     public void decreaseMana(int amount) {
         currentMana = Math.max(currentMana - amount, 0);
-    }
-
-
-    public int getExpReward() {
-        return getLevel() * 10;
     }
 
 }
