@@ -9,7 +9,7 @@ public class Combat {
     public Entity startCombat(){
         while (this.player.getCurrentHP() > 0 && this.monster.getCurrentHP() > 0) {
             Action playerAction = ((StandardPlayer)this.player).getAction();
-            Action monsterAction = ((Monster)this.monster).getAction(this.player.getCurrentHP());
+            Action monsterAction = ((Monster)this.monster).getAction(this.player.getHealthRatio());
             Action fastestAction = getFastestAction(playerAction,monsterAction);
             if ( fastestAction == playerAction ) {
                 playerAction.use(this.player,this.monster);
