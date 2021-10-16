@@ -3,6 +3,7 @@ public class WindSlash implements Action {
     private final int speed = 8;
     private final int manaCost;
     private final int damage;
+    private final Element element = new Air();
 
     public WindSlash(int level) {
         this.manaCost = level * 2;

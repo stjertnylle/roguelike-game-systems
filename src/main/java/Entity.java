@@ -4,6 +4,7 @@ public abstract class Entity {
     private int currentHP;
     private int maxMana;
     private int currentMana;
+    private Element element;
 
     public Entity(int level) {
         if (level <= 0)
@@ -11,6 +12,14 @@ public abstract class Entity {
         this.level = level;
         initializeHP(level);
         initializeMana(level);
+    }
+
+    protected void setElement(Element element) {
+        this.element = element;
+    }
+
+    public Element getElement() {
+        return element;
     }
 
     protected void initializeHP(int level) {

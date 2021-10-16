@@ -2,11 +2,11 @@ import java.util.HashMap;
 
 public class Vampire extends Monster {
     private Weapon weapon; // TODO: Add weapon
-    private Element element; // TODO: Add element
     private HashMap<String, Action> availableActions;
 
     public Vampire(int level) {
         super(level);
+        setElement(new Air());
     }
 
     @Override
@@ -17,15 +17,10 @@ public class Vampire extends Monster {
         availableActions.put("Healing spell", new HealingSpell(getLevel()));
         availableActions.put("Life steal", new LifeSteal(getLevel()));
         availableActions.put("Wind slash", new WindSlash(getLevel()));
-
     }
 
     public Weapon getWeapon() {
         return weapon;
-    }
-
-    public Element getElement() {
-        return element;
     }
 
     @Override
@@ -42,5 +37,10 @@ public class Vampire extends Monster {
             return availableActions.get("Life steal");
         else
             return availableActions.get("Heavy attack");
+    }
+
+    @Override
+    int getExpReward() {
+        return getLevel() * 10;
     }
 }
