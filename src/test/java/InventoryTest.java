@@ -3,7 +3,17 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class InventoryTest {
-    Player player = new Player(1);
+    Player player = new Player(1) {
+        @Override
+        Action getAction() {
+            return null;
+        }
+
+        @Override
+        public Element getElement() {
+            return null;
+        }
+    };
     Inventory inventory = player.getPlayerInventory();
 
     @Test
