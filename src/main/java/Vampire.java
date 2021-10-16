@@ -6,7 +6,11 @@ public class Vampire extends Monster {
 
     public Vampire(int level) {
         super(level);
-        setElement(new Air());
+    }
+
+    @Override
+    public Element getElement() {
+        return new Air();
     }
 
     @Override

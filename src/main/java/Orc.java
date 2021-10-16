@@ -6,7 +6,11 @@ public class Orc extends Monster {
 
     public Orc(int level) {
         super(level);
-        setElement(new Fire());
+    }
+
+    @Override
+    public Element getElement() {
+        return new Fire();
     }
 
     @Override
