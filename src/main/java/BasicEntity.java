@@ -6,4 +6,10 @@ public class BasicEntity extends Entity {
         super(level);
     }
 
+    @Override
+    public Element getElement() {
+        return null;
+    }
+
+
 }

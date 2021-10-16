@@ -1,3 +1,3 @@
 public interface Element {
-    Element getWeakness();
+    double getModifierAgainst(Element element);
 }

@@ -13,6 +13,10 @@ public abstract class Entity {
         initializeMana(level);
     }
 
+
+    public abstract Element getElement();
+
+
     protected void initializeHP(int level) {
         this.maxHP = level * 10;
         this.currentHP = maxHP;

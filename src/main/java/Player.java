@@ -1,5 +1,6 @@
-public class Player extends Entity {
-    private Inventory playerInventory;
+
+    public abstract class Player extends Entity {
+        private Inventory playerInventory;
 
     public Player(int level) {
         super(level);
@@ -13,4 +14,6 @@ public class Player extends Entity {
     public Inventory getPlayerInventory() {
         return playerInventory;
     }
+
+    abstract Action getAction();
 }
