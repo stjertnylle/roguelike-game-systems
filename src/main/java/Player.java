@@ -26,4 +26,6 @@ public interface Player {
     void rewardExp(int gainedExp);
 
     Action getAction();
+
+    Element getElement();
 }

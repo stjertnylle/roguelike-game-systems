@@ -8,11 +8,6 @@ public abstract class Monster extends Entity {
 
     // Abstract methods, each monster type will have its own behaviour
     abstract void initializeAvailableActions();
+    abstract int getExpReward();
     abstract Action getAction(double playerHealthRatio);
-
-    // Methods with implementation shared by all monsters
-    public int getExpReward() {
-        return getLevel() * 10;
-    }
-
 }
