@@ -9,8 +9,8 @@ public class Combat {
 
    public Entity startCombat(){
        while(this.player.getCurrentHP() > 0 && this.monster.getCurrentHP() > 0){
-           Action playerAction = new LightAttack(10);
-           Action monsterAction = new HeavyAttack(10);
+           Action playerAction = new LightAttack(10);  //hardcoded values needing to change
+           Action monsterAction = new HeavyAttack(10); //hardcoded values needing to change
            Action fastestAction = getFastestAction(playerAction, monsterAction);
            if ( fastestAction == playerAction ) {
                playerAction.use(this.player, this.monster);}

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public interface Player {
+public interface Player{
     int getHPValue();
 
     void decreaseHP(int amount);
