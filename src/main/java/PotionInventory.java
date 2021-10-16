@@ -24,7 +24,7 @@ public class PotionInventory {
     }
 
     public void remove(Potion potion) throws NoSuchElementException {
-        try{
+
             if(this.count(potion) == 1){//Existerar endast 1 objekt
                 potionBag.remove(potion);//ta bort det
             }
@@ -32,14 +32,10 @@ public class PotionInventory {
                 potionBag.put(potion, potionBag.get(potion) - 1);//Minska räknaren
             }
             else{                                                               //Annars (när det finns 0 objekt)
-                throw new NoSuchElementException("finns inget sådant objekt");  //Throwa nytt exception, "Objektet finns inte"
+                throw new NoSuchElementException("There is no such potion to remove");
             }
 
 
-        }catch (NoSuchElementException e){                 //Här catchas exceptionet
-            System.out.println(e);  //** Framgick inte huruvida Exceptionet skulle catchas (och skrivas ut till användaren)
-            //** eller inte. Men jag valde att catcha Exceptionet, samt att skriva ut till användare
-            //** för extra tydlighet
-        }
+
     }
 }
