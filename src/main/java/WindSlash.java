@@ -13,6 +13,7 @@ public class WindSlash implements Action {
     @Override
     public void use(Entity user, Entity receiver) {
         // TODO: Implement!
+        receiver.decreaseHP(this.damage);
     }
 
     @Override
