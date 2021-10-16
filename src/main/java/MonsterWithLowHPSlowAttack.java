@@ -7,9 +7,19 @@ public class MonsterWithLowHPSlowAttack extends Monster{
         super(level);
     }
 
+    @Override
+    public Element getElement(){
+        return null;
+    }
+
     void initializeAvailableActions() {
         availableActions = new HashMap<>();
         availableActions.put("Heavy attack", new HeavyAttack(getLevel()));
+    }
+
+    @Override
+    int getExpReward(){
+        return 0;
     }
 
     Action getAction(double playerHealthRatio){

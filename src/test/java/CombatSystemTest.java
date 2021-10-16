@@ -1,8 +1,13 @@
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CombatSystemTest {
-    StandardPlayer standardplayer = new StandardPlayer(10) {
+    Player player = new Player(10) {
+        @Override
+        public Element getElement(){
+            return null;
+        }
         @Override
         Action getAction(){
             return lightAttackFromPlayer;
@@ -13,16 +18,16 @@ public class CombatSystemTest {
     LightAttack lightAttackFromPlayer = new LightAttack(10);
     LightAttack lightAttackFromMonster = new LightAttack(10);
     HeavyAttack heavyAttack = new HeavyAttack(10);
-    Combat combat = new Combat(standardplayer,monsterWithLowHPSlowAttack);
+    Combat combat = new Combat(player,monsterWithLowHPSlowAttack);
 
     @Test
     void getFastestAction(){
-        assertEquals(lightAttackFromPlayer, combat.getFastestAction(lightAttackFromPlayer, heavyAttack));
+        assertEquals(lightAttackFromPlayer,combat.getFastestAction(lightAttackFromPlayer,heavyAttack));
     }
 
     @Test
     void getFastestActionWhenBothActionsSameSpeed(){
-        assertEquals(lightAttackFromPlayer, combat.getFastestAction(lightAttackFromPlayer, lightAttackFromMonster));
+        assertEquals(lightAttackFromPlayer,combat.getFastestAction(lightAttackFromPlayer,lightAttackFromMonster));
     }
 
     @Test
@@ -36,20 +41,25 @@ public class CombatSystemTest {
     void startCombatReturnsCorrectWinnerWhenItIsPlayer(){
         monsterWithLowHPSlowAttack.setHP(1);
         combat.startCombat();
-        assertEquals(standardplayer, combat.startCombat());
+        assertEquals(player,combat.startCombat());
     }
 
     @Test
     void monsterDoesNotGetToHitWhenItDies(){
-        standardplayer.setHP(1);
+        player.setHP(1);
         monsterWithLowHPSlowAttack.setHP(1);
         combat.startCombat();
-        assertEquals(1, standardplayer.getCurrentHP());
+        assertEquals(1,player.getCurrentHP());
     }
 
     @Test
     void combatEndsWhenHPLessThanZeroForPlayer(){
-        StandardPlayer standardPlayerWithHeavyAttack = new StandardPlayer(10) {
+        Player standardPlayerWithHeavyAttack = new Player(10) {
+            @Override
+            public Element getElement(){
+                return null;
+            }
+
             @Override
             Action getAction(){
                 return heavyAttack;
@@ -62,7 +72,12 @@ public class CombatSystemTest {
 
     @Test
     void startCombatReturnsCorrectWinnerWhenItIsMonster(){
-        StandardPlayer standardPlayerWithHeavyAttack = new StandardPlayer(10) {
+        Player standardPlayerWithHeavyAttack = new Player(10) {
+            @Override
+            public Element getElement(){
+                return null;
+            }
+
             @Override
             Action getAction(){
                 return heavyAttack;
@@ -70,12 +85,17 @@ public class CombatSystemTest {
         };
         standardPlayerWithHeavyAttack.setHP(1);
         Entity winnerOfCombat = new Combat(standardPlayerWithHeavyAttack,monsterWithLowHPFastAttack).startCombat();
-        assertEquals(monsterWithLowHPFastAttack, winnerOfCombat);
+        assertEquals(monsterWithLowHPFastAttack,winnerOfCombat);
     }
 
     @Test
     void PlayerDoesNotGetToHitWhenItDies(){
-        StandardPlayer standardPlayerWithHeavyAttack = new StandardPlayer(10) {
+        Player standardPlayerWithHeavyAttack = new Player(10) {
+            @Override
+            public Element getElement(){
+                return null;
+            }
+
             @Override
             Action getAction(){
                 return heavyAttack;
@@ -84,9 +104,7 @@ public class CombatSystemTest {
         standardPlayerWithHeavyAttack.setHP(1);
         monsterWithLowHPFastAttack.setHP(1);
         new Combat(standardPlayerWithHeavyAttack,monsterWithLowHPFastAttack).startCombat();
-        assertEquals(1, monsterWithLowHPFastAttack.getCurrentHP());
+        assertEquals(1,monsterWithLowHPFastAttack.getCurrentHP());
     }
-
-
 
 }
