@@ -14,6 +14,7 @@ public class LightAttack implements Action {
     @Override
     public void use(Entity user, Entity receiver) {
         // TODO: Implement!
+        receiver.decreaseHP(this.damage);
     }
 
     @Override
