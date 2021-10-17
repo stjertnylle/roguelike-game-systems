@@ -26,8 +26,8 @@ public class Combat {
             loser = player;
             return winner = monster;
         } else {
-            endCombat();
             loser = monster;
+            endCombat((Player)player, (Monster)loser);
             return winner = player;
         }
     }
@@ -38,10 +38,10 @@ public class Combat {
         else return a1;
     }
 
-    public void endCombat(){
-        //TODO determine what happens when combat ends
-        // + XP for player?
+    public void endCombat(Player winner, Monster loser){
+        winner.increaseXP((loser.getExpReward()));
     }
+
 
     public void gameOver(){
         //TODO determine what happens when player dies

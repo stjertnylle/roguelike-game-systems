@@ -44,4 +44,11 @@ public class LevelTest {
         assertEquals(100, levelHundred.getCurrentLevel());
     }
 
+    @Test
+    void entityGetsCorrectLevel(){
+        Orc orc = new Orc(10);
+        assertEquals(10, orc.getLevel().getCurrentLevel());
+    }
+
+
 }

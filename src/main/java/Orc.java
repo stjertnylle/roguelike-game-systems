@@ -16,9 +16,9 @@ public class Orc extends Monster {
     @Override
     void initializeAvailableActions() {
         availableActions = new HashMap<>();
-        availableActions.put("Light attack", new LightAttack(getLevel()));
-        availableActions.put("Heavy attack", new HeavyAttack(getLevel()));
-        availableActions.put("Fire strike", new FireStrike(getLevel()));
+        availableActions.put("Light attack", new LightAttack(getLevel().getCurrentLevel()));
+        availableActions.put("Heavy attack", new HeavyAttack(getLevel().getCurrentLevel()));
+        availableActions.put("Fire strike", new FireStrike(getLevel().getCurrentLevel()));
     }
 
     @Override
@@ -34,6 +34,6 @@ public class Orc extends Monster {
 
     @Override
     int getExpReward() {
-        return getLevel() * 5;
+        return getLevel().getCurrentLevel() * 5;
     }
 }
