@@ -7,7 +7,7 @@ class BasicEntityTest {
     @Test
     void testLevelSetCorrectly() {
         Entity entity = new BasicEntity(10);
-        assertEquals(10, entity.getLevel());
+        assertEquals(10, entity.getLevel().getCurrentLevel());
     }
 
     @Test

@@ -16,11 +16,11 @@ public class Vampire extends Monster {
     @Override
     void initializeAvailableActions() {
         availableActions = new HashMap<>();
-        availableActions.put("Light attack", new LightAttack(getLevel()));
-        availableActions.put("Heavy attack", new HeavyAttack(getLevel()));
-        availableActions.put("Healing spell", new HealingSpell(getLevel()));
-        availableActions.put("Life steal", new LifeSteal(getLevel()));
-        availableActions.put("Wind slash", new WindSlash(getLevel()));
+        availableActions.put("Light attack", new LightAttack(getLevel().getCurrentLevel()));
+        availableActions.put("Heavy attack", new HeavyAttack(getLevel().getCurrentLevel()));
+        availableActions.put("Healing spell", new HealingSpell(getLevel().getCurrentLevel()));
+        availableActions.put("Life steal", new LifeSteal(getLevel().getCurrentLevel()));
+        availableActions.put("Wind slash", new WindSlash(getLevel().getCurrentLevel()));
     }
 
     public Weapon getWeapon() {
@@ -45,6 +45,6 @@ public class Vampire extends Monster {
 
     @Override
     int getExpReward() {
-        return getLevel() * 10;
+        return getLevel().getCurrentLevel() * 10;
     }
 }

@@ -9,7 +9,7 @@ public class Inventory {
         this.owner = owner;
     }
     public int maxSize(){
-        int maxSize = owner.getLevel() + 5;
+        int maxSize = owner.getLevel().getCurrentLevel() + 5;
         if (maxSize > 30){
             return 30;
         }

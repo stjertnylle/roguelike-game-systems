@@ -8,6 +8,12 @@ public class CombatSystemTest {
         public Element getElement(){
             return null;
         }
+
+        @Override
+        public void increaseXP(int xp){
+
+        }
+
         @Override
         Action getAction(){
             return lightAttackFromPlayer;
@@ -61,6 +67,11 @@ public class CombatSystemTest {
             }
 
             @Override
+            public void increaseXP(int xp){
+
+            }
+
+            @Override
             Action getAction(){
                 return heavyAttack;
             }
@@ -79,6 +90,11 @@ public class CombatSystemTest {
             }
 
             @Override
+            public void increaseXP(int xp){
+
+            }
+
+            @Override
             Action getAction(){
                 return heavyAttack;
             }
@@ -94,6 +110,11 @@ public class CombatSystemTest {
             @Override
             public Element getElement(){
                 return null;
+            }
+
+            @Override
+            public void increaseXP(int xp){
+
             }
 
             @Override

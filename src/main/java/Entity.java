@@ -1,16 +1,16 @@
 public abstract class Entity {
-    protected int level;
+    protected Level level;
     private int maxHP;
     private int currentHP;
     private int maxMana;
     private int currentMana;
 
-    public Entity(int level) {
-        if (level <= 0)
+    public Entity(int lvl){
+        if ( lvl <= 0 )
             throw new IllegalArgumentException("Level must be higher than 0!");
-        this.level = level;
-        initializeHP(level);
-        initializeMana(level);
+        this.level = new Level(lvl);
+        initializeHP(level.getCurrentLevel());
+        initializeMana(level.getCurrentLevel());
     }
 
 
@@ -27,7 +27,7 @@ public abstract class Entity {
         this.currentMana = maxMana;
     }
 
-    public int getLevel() {
+    public Level getLevel() {
         return level;
     }
 

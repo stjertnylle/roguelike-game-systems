@@ -14,7 +14,7 @@ public class MonsterWithLowHPFastAttack extends Monster{
 
     void initializeAvailableActions() {
         availableActions = new HashMap<>();
-        availableActions.put("Light attack", new LightAttack(getLevel()));
+        availableActions.put("Light attack", new LightAttack(getLevel().getCurrentLevel()));
     }
 
     @Override

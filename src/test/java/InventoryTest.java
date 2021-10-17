@@ -5,6 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class InventoryTest {
     Player player = new Player(1) {
         @Override
+        public void increaseXP(int xp){
+
+        }
+
+        @Override
         Action getAction() {
             return null;
         }
@@ -27,7 +32,7 @@ public class InventoryTest {
 
     @Test
     void testSizeAfterLevelUp(){
-        player.levelUP();
+        player.getLevel().setCurrentLevel(2);
         assertEquals(inventory.maxSize(), 7);
     }
 
