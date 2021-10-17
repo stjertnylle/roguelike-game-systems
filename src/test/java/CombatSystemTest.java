@@ -157,6 +157,11 @@ public class CombatSystemTest {
            }
 
            @Override
+           public Weapon getWeapon() {
+               return new NoModifierWeapon();
+           }
+
+           @Override
            public Element getElement(){
                return null;
            }
@@ -171,6 +176,11 @@ public class CombatSystemTest {
             @Override
             Action getAction(){
                 return lightAttackFromPlayer;
+            }
+
+            @Override
+            public Weapon getWeapon() {
+                return new NoModifierWeapon();
             }
 
             @Override

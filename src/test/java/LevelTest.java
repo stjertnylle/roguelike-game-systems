@@ -58,6 +58,11 @@ public class LevelTest {
             }
 
             @Override
+            public Weapon getWeapon() {
+                return new NoModifierWeapon();
+            }
+
+            @Override
             public Element getElement(){
                 return null;
             }
@@ -69,6 +74,11 @@ public class LevelTest {
      @Test
     void playerHasCorrectHPWhenLevelledUp(){
          Player player = new Player(1) {
+             @Override
+             public Weapon getWeapon() {
+                 return new NoModifierWeapon();
+             }
+
              @Override
              Action getAction(){
                  return null;
@@ -87,6 +97,11 @@ public class LevelTest {
     void playerHasCorrectManaWhenLevelledUp(){
         Player player = new Player(1) {
             @Override
+            public Weapon getWeapon() {
+                return new NoModifierWeapon();
+            }
+
+            @Override
             Action getAction(){
                 return null;
             }
@@ -97,7 +112,7 @@ public class LevelTest {
             }
         };
         player.increaseXP(200);
-        assertEquals(20 , player.getMaxHP());
+        assertEquals(20 , player.getMaxMana());
     }
 
 }
