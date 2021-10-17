@@ -1,9 +1,12 @@
 public class LightAttack implements Action {
+    private final Entity user;
     private final int speed = 7;
     private final String name = "Light attack";
     private final int damage;
 
-    public LightAttack(int level) {
+    public LightAttack(Entity user) {
+        this.user = user;
+        int level = user.getLevel().getCurrentLevel();
         this.damage = level * 2;
     }
 
@@ -23,7 +26,7 @@ public class LightAttack implements Action {
     }
 
     @Override
-    public int getSpeed() {
-        return speed;
+    public double getSpeed() {
+        return speed * user.getWeapon().getSpeedModifier();
     }
 }

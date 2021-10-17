@@ -16,11 +16,11 @@ public class Vampire extends Monster {
     @Override
     void initializeAvailableActions() {
         availableActions = new HashMap<>();
-        availableActions.put("Light attack", new LightAttack(getLevel().getCurrentLevel()));
-        availableActions.put("Heavy attack", new HeavyAttack(getLevel().getCurrentLevel()));
-        availableActions.put("Healing spell", new HealingSpell(getLevel().getCurrentLevel()));
-        availableActions.put("Life steal", new LifeSteal(getLevel().getCurrentLevel()));
-        availableActions.put("Wind slash", new WindSlash(getLevel().getCurrentLevel()));
+        availableActions.put("Light attack", new LightAttack(this));
+        availableActions.put("Heavy attack", new HeavyAttack(this));
+        availableActions.put("Healing spell", new HealingSpell(this));
+        availableActions.put("Life steal", new LifeSteal(this));
+        availableActions.put("Wind slash", new WindSlash(this));
     }
 
     public Weapon getWeapon() {

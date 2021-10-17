@@ -15,15 +15,20 @@ public class CombatSystemTest {
         }
 
         @Override
+        public Weapon getWeapon() {
+            return new NoModifierWeapon();
+        }
+
+        @Override
         Action getAction(){
             return lightAttackFromPlayer;
         }
     };
     MonsterWithLowHPSlowAttack monsterWithLowHPSlowAttack = new MonsterWithLowHPSlowAttack(10);
     MonsterWithLowHPFastAttack monsterWithLowHPFastAttack = new MonsterWithLowHPFastAttack(10);
-    LightAttack lightAttackFromPlayer = new LightAttack(10);
-    LightAttack lightAttackFromMonster = new LightAttack(10);
-    HeavyAttack heavyAttack = new HeavyAttack(10);
+    LightAttack lightAttackFromPlayer = new LightAttack(player);
+    LightAttack lightAttackFromMonster = new LightAttack(player);
+    HeavyAttack heavyAttack = new HeavyAttack(player);
     Combat combat = new Combat(player,monsterWithLowHPSlowAttack);
 
     @Test
@@ -72,6 +77,11 @@ public class CombatSystemTest {
             }
 
             @Override
+            public Weapon getWeapon() {
+                return new NoModifierWeapon();
+            }
+
+            @Override
             Action getAction(){
                 return heavyAttack;
             }
@@ -95,6 +105,11 @@ public class CombatSystemTest {
             }
 
             @Override
+            public Weapon getWeapon() {
+                return new NoModifierWeapon();
+            }
+
+            @Override
             Action getAction(){
                 return heavyAttack;
             }
@@ -115,6 +130,11 @@ public class CombatSystemTest {
             @Override
             public void increaseXP(int xp){
 
+            }
+
+            @Override
+            public Weapon getWeapon() {
+                return new NoModifierWeapon();
             }
 
             @Override

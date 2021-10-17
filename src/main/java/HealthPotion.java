@@ -4,7 +4,7 @@ public class HealthPotion extends Potion {
     }
 
     @Override
-    public void usePotion(PlayerInterface player) {
+    public void usePotion(Player player) {
         player.increaseHP(getValue());
     }
 }

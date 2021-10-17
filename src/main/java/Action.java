@@ -1,7 +1,7 @@
 public interface Action {
     String getName();
 
-    int getSpeed();
+    double getSpeed();
 
     void use(Entity user, Entity receiver);
 

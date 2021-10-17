@@ -1,10 +1,13 @@
 public class HealingSpell implements Action {
+    private final Entity user;
     private final String name = "Healing spell";
     private final int speed = 6;
     private final int manaCost;
     private final int healAmount;
 
-    public HealingSpell(int level) {
+    public HealingSpell(Entity user) {
+        this.user = user;
+        int level = user.getLevel().getCurrentLevel();
         this.manaCost = level * 3;
         this.healAmount = level * 3;
     }
@@ -28,7 +31,7 @@ public class HealingSpell implements Action {
     }
 
     @Override
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 }

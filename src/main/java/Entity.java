@@ -13,7 +13,7 @@ public abstract class Entity {
         initializeMana(level.getCurrentLevel());
     }
 
-
+    public abstract Weapon getWeapon();
     public abstract Element getElement();
 
 

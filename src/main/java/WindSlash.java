@@ -1,11 +1,14 @@
 public class WindSlash implements Action {
+    private final Entity user;
     private final String name = "Wind slash";
     private final int speed = 8;
     private final int manaCost;
     private final int damage;
     private final Element element = new Air();
 
-    public WindSlash(int level) {
+    public WindSlash(Entity user) {
+        this.user = user;
+        int level = user.getLevel().getCurrentLevel();
         this.manaCost = level * 2;
         this.damage = level * 2;
     }
@@ -22,8 +25,8 @@ public class WindSlash implements Action {
     }
 
     @Override
-    public int getSpeed() {
-        return speed;
+    public double getSpeed() {
+        return speed * user.getWeapon().getSpeedModifier();
     }
 
     public int getManaCost() {

@@ -2,9 +2,15 @@ import java.util.HashMap;
 
 public class MonsterWithLowHPSlowAttack extends Monster{
     private HashMap<String, Action> availableActions;
+    private final Weapon weapon = new NoModifierWeapon();
 
     public MonsterWithLowHPSlowAttack(int level) {
         super(level);
+    }
+
+    @Override
+    public Weapon getWeapon() {
+        return weapon;
     }
 
     @Override
@@ -14,7 +20,7 @@ public class MonsterWithLowHPSlowAttack extends Monster{
 
     void initializeAvailableActions() {
         availableActions = new HashMap<>();
-        availableActions.put("Heavy attack", new HeavyAttack(getLevel().getCurrentLevel()));
+        availableActions.put("Heavy attack", new HeavyAttack(this));
     }
 
     @Override
