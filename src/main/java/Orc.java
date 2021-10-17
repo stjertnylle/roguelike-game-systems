@@ -9,6 +9,11 @@ public class Orc extends Monster {
     }
 
     @Override
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    @Override
     public Element getElement() {
         return new Fire();
     }
@@ -16,9 +21,9 @@ public class Orc extends Monster {
     @Override
     void initializeAvailableActions() {
         availableActions = new HashMap<>();
-        availableActions.put("Light attack", new LightAttack(getLevel().getCurrentLevel()));
-        availableActions.put("Heavy attack", new HeavyAttack(getLevel().getCurrentLevel()));
-        availableActions.put("Fire strike", new FireStrike(getLevel().getCurrentLevel()));
+        availableActions.put("Light attack", new LightAttack(this));
+        availableActions.put("Heavy attack", new HeavyAttack(this));
+        availableActions.put("Fire strike", new FireStrike(this));
     }
 
     @Override

@@ -10,6 +10,11 @@ public class InventoryTest {
         }
 
         @Override
+        public Weapon getWeapon() {
+            return null;
+        }
+
+        @Override
         Action getAction() {
             return null;
         }

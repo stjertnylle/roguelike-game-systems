@@ -1,9 +1,12 @@
 public class HeavyAttack implements Action {
+    private final Entity user;
     private final int speed = 5;
     private final String name = "Heavy attack";
     private final int damage;
 
-    public HeavyAttack(int level) {
+    public HeavyAttack(Entity user) {
+        this.user = user;
+        int level = user.getLevel().getCurrentLevel();
         this.damage = level * 3;
     }
 
@@ -22,7 +25,7 @@ public class HeavyAttack implements Action {
     }
 
     @Override
-    public int getSpeed() {
-        return speed;
+    public double getSpeed() {
+        return speed * user.getWeapon().getSpeedModifier();
     }
 }

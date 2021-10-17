@@ -7,6 +7,11 @@ public class BasicEntity extends Entity {
     }
 
     @Override
+    public Weapon getWeapon() {
+        return null;
+    }
+
+    @Override
     public Element getElement() {
         return null;
     }

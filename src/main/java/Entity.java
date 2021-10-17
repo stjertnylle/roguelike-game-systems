@@ -1,5 +1,5 @@
 public abstract class Entity {
-    protected Level level;
+    private Level level;
     private int maxHP;
     private int currentHP;
     private int maxMana;
@@ -13,7 +13,7 @@ public abstract class Entity {
         initializeMana(level.getCurrentLevel());
     }
 
-
+    public abstract Weapon getWeapon();
     public abstract Element getElement();
 
 
