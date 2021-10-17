@@ -8,9 +8,10 @@ public abstract class Player extends Entity {
     }
 
     public void increaseXP(int xp){
-        this.getLevel().addXP(xp);
-    };
-
+      this.getLevel().addXP(xp);
+      initializeHP(this.getLevel().getCurrentLevel());
+      initializeMana(this.getLevel().getCurrentLevel());
+    }
 
     public Inventory getPlayerInventory(){
         return playerInventory;

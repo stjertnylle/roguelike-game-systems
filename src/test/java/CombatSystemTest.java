@@ -128,4 +128,38 @@ public class CombatSystemTest {
         assertEquals(1,monsterWithLowHPFastAttack.getCurrentHP());
     }
 
+    @Test
+    void playerIsAwardedXPWhenEndCombatIsCalled(){
+       Player playerLevelOne = new Player(1) {
+           @Override
+           Action getAction(){
+               return null;
+           }
+
+           @Override
+           public Element getElement(){
+               return null;
+           }
+       };
+        combat.endCombat(playerLevelOne, monsterWithLowHPSlowAttack);
+        assertEquals(2, playerLevelOne.getLevel().getCurrentLevel());
+    }
+
+    @Test
+    void playerIsAwardedXpWhenTheyWinCombat(){
+        Player playerLevelOne = new Player(1) {
+            @Override
+            Action getAction(){
+                return lightAttackFromPlayer;
+            }
+
+            @Override
+            public Element getElement(){
+                return null;
+            }
+        };
+        new Combat(playerLevelOne,monsterWithLowHPSlowAttack).startCombat();
+        assertEquals(2, playerLevelOne.getLevel().getCurrentLevel());
+    }
+
 }

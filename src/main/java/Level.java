@@ -1,6 +1,5 @@
 public class Level {
     private int currentLevel;
-    private int actualPlayerXP;
     private int shownPlayerXP;
     private int xpToNextLevel;
     private final int MAX_LEVEL = 100;
@@ -11,12 +10,11 @@ public class Level {
     }
 
     public void addXP(int XP){
-        actualPlayerXP += XP;
         shownPlayerXP += XP;
         while (shownPlayerXP >= xpToNextLevel && currentLevel < MAX_LEVEL) {
             currentLevel++;
             shownPlayerXP = shownPlayerXP - xpToNextLevel;
-            xpToNextLevel *= 1.5;
+            xpToNextLevel *= XP_INCREMENT;
         }
     }
 
@@ -27,10 +25,8 @@ public class Level {
     public void setCurrentLevel(int currentLevel){
         this.currentLevel = currentLevel;
         shownPlayerXP = 0;
-        actualPlayerXP = 0;
         xpToNextLevel = 100;
         for (int i = 1; i < currentLevel; i++) {
-            actualPlayerXP += xpToNextLevel;
             xpToNextLevel *= 1.5;
         }
     }

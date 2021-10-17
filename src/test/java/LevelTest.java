@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-
 public class LevelTest {
 
     @Test
@@ -50,5 +49,55 @@ public class LevelTest {
         assertEquals(10, orc.getLevel().getCurrentLevel());
     }
 
+    @Test
+    void playerGetsCorrectLevelWhenAwardedXP(){
+        Player player = new Player(1) {
+            @Override
+            Action getAction(){
+                return null;
+            }
+
+            @Override
+            public Element getElement(){
+                return null;
+            }
+        };
+        player.increaseXP(200);
+        assertEquals(2, player.getLevel().getCurrentLevel());
+    }
+
+     @Test
+    void playerHasCorrectHPWhenLevelledUp(){
+         Player player = new Player(1) {
+             @Override
+             Action getAction(){
+                 return null;
+             }
+
+             @Override
+             public Element getElement(){
+                 return null;
+             }
+         };
+         player.increaseXP(200);
+         assertEquals(20 , player.getMaxHP());
+     }
+
+    @Test
+    void playerHasCorrectManaWhenLevelledUp(){
+        Player player = new Player(1) {
+            @Override
+            Action getAction(){
+                return null;
+            }
+
+            @Override
+            public Element getElement(){
+                return null;
+            }
+        };
+        player.increaseXP(200);
+        assertEquals(20 , player.getMaxHP());
+    }
 
 }
