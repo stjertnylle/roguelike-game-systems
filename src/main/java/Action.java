@@ -3,6 +3,6 @@ public interface Action {
 
     double getSpeed();
 
-    void use(Entity user, Entity receiver);
+    void apply(Entity target);
 
 }

@@ -15,7 +15,7 @@ public class HeavyAttack implements Action {
     }
 
     @Override
-    public void use(Entity user, Entity receiver) {
+    public void apply(Entity target) {
         // TODO: Implement!
     }
 

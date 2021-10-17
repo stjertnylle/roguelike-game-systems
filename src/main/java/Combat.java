@@ -12,13 +12,13 @@ public class Combat {
             Action monsterAction = ((Monster) this.monster).getAction(this.player.getHealthRatio());
             Action fastestAction = getFastestAction(playerAction,monsterAction);
             if ( fastestAction == playerAction ) {
-                playerAction.use(this.player,this.monster);
+                playerAction.apply(this.monster);
                 if ( this.monster.getCurrentHP() > 0 )
-                    monsterAction.use(this.monster,this.player);
+                    monsterAction.apply(this.player);
             } else {
-                monsterAction.use(this.monster,this.player);
+                monsterAction.apply(this.player);
                 if ( this.player.getCurrentHP() > 0 )
-                    playerAction.use(this.player,this.monster);
+                    playerAction.apply(this.monster);
             }
         }
         if ( this.player.getCurrentHP() <= 0 ) {
