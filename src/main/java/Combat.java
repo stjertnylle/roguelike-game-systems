@@ -8,27 +8,27 @@ public class Combat {
 
     public Entity startCombat(){
         while (this.player.getCurrentHP() > 0 && this.monster.getCurrentHP() > 0) {
-            Action playerAction = ((Player)this.player).getAction();
-            Action monsterAction = ((Monster)this.monster).getAction(this.player.getHealthRatio());
+            Action playerAction = ((Player) this.player).getAction();
+            Action monsterAction = ((Monster) this.monster).getAction(this.player.getHealthRatio());
             Action fastestAction = getFastestAction(playerAction,monsterAction);
             if ( fastestAction == playerAction ) {
                 playerAction.use(this.player,this.monster);
-                if ( monster.getCurrentHP() > 0 )
+                if ( this.monster.getCurrentHP() > 0 )
                     monsterAction.use(this.monster,this.player);
             } else {
                 monsterAction.use(this.monster,this.player);
-                if ( player.getCurrentHP() > 0 )
+                if ( this.player.getCurrentHP() > 0 )
                     playerAction.use(this.player,this.monster);
             }
         }
         if ( this.player.getCurrentHP() <= 0 ) {
             gameOver();
-            loser = player;
-            return winner = monster;
+            loser = this.player;
+            return winner = this.monster;
         } else {
-            loser = monster;
-            endCombat((Player)player, (Monster)loser);
-            return winner = player;
+            loser = this.monster;
+            endCombat((Player) this.player,(Monster) this.loser);
+            return winner = this.player;
         }
     }
 
@@ -38,7 +38,7 @@ public class Combat {
         else return a1;
     }
 
-    public void endCombat(Player winner, Monster loser){
+    public void endCombat(Player winner,Monster loser){
         winner.increaseXP((loser.getExpReward()));
     }
 

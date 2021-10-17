@@ -1,5 +1,5 @@
 public abstract class Entity {
-    protected Level level;
+    private Level level;
     private int maxHP;
     private int currentHP;
     private int maxMana;

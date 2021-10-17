@@ -19,7 +19,7 @@ public class MonsterWithLowHPSlowAttack extends Monster{
 
     @Override
     int getExpReward(){
-        return 0;
+        return 160;
     }
 
     Action getAction(double playerHealthRatio){
