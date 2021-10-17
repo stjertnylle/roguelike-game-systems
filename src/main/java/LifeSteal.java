@@ -24,7 +24,9 @@ public class LifeSteal implements Action {
 
     @Override
     public void apply(Entity target) {
-        // TODO: Implement!
+        target.decreaseHP(getDamage());
+        user.increaseHP(getDamage());
+        user.decreaseMana(getManaCost());
     }
 
     public int getManaCost() {
