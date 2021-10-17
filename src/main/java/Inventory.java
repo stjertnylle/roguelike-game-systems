@@ -24,13 +24,26 @@ public class Inventory {
         }
         weaponInventory.add(weaponToAdd);
     }
+    public void removeWeapon(Weapon weapon){
+        if(!(weaponInventory.contains(weapon))){
+            throw new IllegalArgumentException("Inventory does not contain " + weapon.getWeaponName());
+        }
+        else{
+            weaponInventory.remove(weapon);
+        }
+    }
     public boolean isFull(){
         return maxSize() == weaponInventory.size();
     }
     public Player getOwner(){
         return owner;
     }
+
+
     public ArrayList getWeapons(){
-        return null;
+        if(weaponInventory.isEmpty()){
+            return new ArrayList();
+        }
+        return weaponInventory;
     }
 }
