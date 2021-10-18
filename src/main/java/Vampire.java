@@ -1,7 +1,6 @@
 import java.util.HashMap;
 
 public class Vampire extends Monster {
-    private Weapon weapon; // TODO: Add weapon
     private HashMap<String, Action> availableActions;
 
     public Vampire(int level) {
@@ -21,10 +20,6 @@ public class Vampire extends Monster {
         availableActions.put("Healing spell", new HealingSpell(this));
         availableActions.put("Life steal", new LifeSteal(this));
         availableActions.put("Wind slash", new WindSlash(this));
-    }
-
-    public Weapon getWeapon() {
-        return weapon;
     }
 
     @Override

@@ -1,16 +1,10 @@
 import java.util.HashMap;
 
 public class Orc extends Monster {
-    private Weapon weapon; // TODO: Add weapon
     private HashMap<String, Action> availableActions;
 
     public Orc(int level) {
         super(level);
-    }
-
-    @Override
-    public Weapon getWeapon() {
-        return weapon;
     }
 
     @Override

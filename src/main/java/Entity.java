@@ -4,6 +4,7 @@ public abstract class Entity {
     private int currentHP;
     private int maxMana;
     private int currentMana;
+    private Weapon weapon;
 
     public Entity(int lvl){
         if ( lvl <= 0 )
@@ -13,7 +14,12 @@ public abstract class Entity {
         initializeMana(level.getCurrentLevel());
     }
 
-    public abstract Weapon getWeapon();
+    public Weapon getWeapon(){
+        return weapon;
+    }
+    public void setWeapon(Weapon weapon){
+        this.weapon = weapon;
+    }
     public abstract Element getElement();
 
 
