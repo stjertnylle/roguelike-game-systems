@@ -5,6 +5,7 @@ public class Orc extends Monster {
 
     public Orc(int level) {
         super(level);
+        setWeapon(new DoubleAxe());
     }
 
     @Override
