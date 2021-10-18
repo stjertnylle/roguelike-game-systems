@@ -1,20 +1,13 @@
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LifeStealTest {
 
-    // Used in test for player damage
     Player level10Player = new Player(10) {
 
         @Override
         Action getAction() {
-            return null;
-        }
-
-        @Override
-        public Weapon getWeapon() {
             return null;
         }
 
