@@ -180,7 +180,7 @@ public class CombatSystemTest {
     }
 
     @Test
-    void monsterDiesWhenHitTwice(){
+    void bothPlayerAndMonsterSurviveATurnWhenBothHPMoreThanZero(){
         MonsterWithLowHPSlowAttack monsterWhoDiesButNoXPReward = new MonsterWithLowHPSlowAttack(1){
             @Override
             int getExpReward(){
