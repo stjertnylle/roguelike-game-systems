@@ -34,6 +34,8 @@ public class PotionInventoryTest {
     @Test
     void testEmptyBagAfterUse(){
         potionInventory.add(smallHealthPotion);
+        potionInventory.add(smallHealthPotion);
+        potionInventory.remove(smallHealthPotion);
         potionInventory.remove(smallHealthPotion);
         assertEquals(potionInventory.contains(smallHealthPotion), false);
         assertEquals(potionInventory.count(smallHealthPotion), 0);

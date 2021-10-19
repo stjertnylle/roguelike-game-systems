@@ -1,6 +1,5 @@
 public class WindSlash implements Action {
     private final Entity user;
-    private final String name = "Wind slash";
     private final int speed = 8;
     private final int manaCost;
     private final int damage;
@@ -22,11 +21,6 @@ public class WindSlash implements Action {
         }
         target.decreaseHP((int) Math.floor(getDamage() * element.getModifierAgainst(target.getElement())));
         user.decreaseMana(getManaCost());
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override

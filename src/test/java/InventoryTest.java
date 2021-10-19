@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class InventoryTest {
@@ -9,6 +11,17 @@ public class InventoryTest {
 
         }
 
+        @Override
+        Action getAction() {
+            return null;
+        }
+
+        @Override
+        public Element getElement() {
+            return null;
+        }
+    };
+    Player highLevelPlayer = new Player(40) {
         @Override
         Action getAction() {
             return null;
@@ -41,8 +54,38 @@ public class InventoryTest {
         for(int i = 0; i < 6; i++){
             inventory.addWeapon(new SwiftAxe());
         }
+        player.equipWeapon(new DoubleAxe());
         assertTrue(inventory.isFull());
     }
+
+    @Test
+    void maxCapacity(){
+        assertEquals(30, highLevelPlayer.getPlayerInventory().maxSize());
+    }
+
+    @Test
+    void addingSameWeaponTwice(){
+        SwiftAxe swiftAxe = new SwiftAxe();
+        inventory.addWeapon(swiftAxe);
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> inventory.addWeapon(swiftAxe));
+        assertEquals("Inventory already contains Swift Axe", e.getMessage());
+    }
+
+    @Test
+    void addingWeaponFullInventory(){
+        for(int i = 0; i < 6; i++){
+            inventory.addWeapon(new SwiftAxe());
+        }
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> inventory.addWeapon(new SwiftAxe()));
+        assertEquals("Inventory full, cannot add Swift Axe", e.getMessage());
+    }
+
+    @Test
+    void removeWeaponNotInInventory(){
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> inventory.removeWeapon(new SwiftAxe()));
+        assertEquals("Inventory does not contain Swift Axe", e.getMessage());
+    }
+
     @Test
     void inventoryNotFullWhenEmpty(){
         assertFalse(inventory.isFull());

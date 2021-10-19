@@ -1,6 +1,5 @@
 public class LifeSteal implements Action {
     private final Entity user;
-    private final String name = "Life steal";
     private final int speed = 4;
     private final int manaCost;
     private final int damage;
@@ -10,11 +9,6 @@ public class LifeSteal implements Action {
         int level = user.getLevel().getCurrentLevel();
         this.manaCost = level * 2;
         this.damage = level;
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override
