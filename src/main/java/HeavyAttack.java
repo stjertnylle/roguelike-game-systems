@@ -19,7 +19,7 @@ public class HeavyAttack implements Action {
         if(target == user){
             throw new IllegalArgumentException("Can't target self with attack");
         }
-        target.decreaseHP((int) (getDamage() * user.getWeapon().getDamageModifier()));
+        target.decreaseHP((int) Math.floor(getDamage() * user.getWeapon().getDamageModifier()));
     }
 
     @Override

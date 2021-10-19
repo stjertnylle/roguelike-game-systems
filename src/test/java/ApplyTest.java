@@ -15,20 +15,18 @@ public class ApplyTest {
         public Element getElement() {
             return null;
         }
-
-        @Override
-        public void setWeapon(Weapon weapon) {
-            this.equipWeapon(new SwiftAxe());
-        }
     };
+
     Vampire vampire = new Vampire(10);
+    Orc orc = new Orc(10);
 
 
     @Test
     void testLightAttack() {
+        player.setWeapon(new SwiftAxe());
         LightAttack la = new LightAttack(player);
         la.apply(vampire);
-        assertEquals(90, vampire.getCurrentHP());
+        assertEquals(80, vampire.getCurrentHP());
     }
 
     @Test
@@ -39,10 +37,26 @@ public class ApplyTest {
     }
 
     @Test
-    void testHeavyAttack(){
+    void testHeavyAttackVampire(){
+        player.setWeapon(new SwiftAxe());
         HeavyAttack ha = new HeavyAttack(player);
         ha.apply(vampire);
-        assertEquals(85, vampire.getCurrentHP());
+        assertEquals(70, vampire.getCurrentHP());
+    }
+
+    @Test
+    void testHeavyAttackPlayer(){
+        HeavyAttack ha = new HeavyAttack(orc);
+        ha.apply(player);
+        assertEquals(49, player.getCurrentHP());
+    }
+
+    @Test
+    void testHeavyAttackOrc(){
+        player.setWeapon(new DoubleAxe());
+        HeavyAttack ha = new HeavyAttack(player);
+        ha.apply(orc);
+        assertEquals(49, orc.getCurrentHP());
     }
 
     @Test
@@ -53,10 +67,18 @@ public class ApplyTest {
     }
 
     @Test
-    void testFireStrike(){
+    void testFireStrikeVampire(){
         FireStrike fs = new FireStrike(player);
         fs.apply(vampire);
         assertEquals(55, vampire.getCurrentHP());
+        assertEquals(70, player.getCurrentMana());
+    }
+
+    @Test
+    void testFireSrtikeOrc(){
+        FireStrike fs = new FireStrike(player);
+        fs.apply(orc);
+        assertEquals(70, orc.getCurrentHP());
         assertEquals(70, player.getCurrentMana());
     }
 
