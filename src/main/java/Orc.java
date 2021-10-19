@@ -23,7 +23,9 @@ public class Orc extends Monster {
 
     @Override
     Action getAction(double playerHealthRatio) {
-        if (playerHealthRatio < 0.2)
+        if (playerHealthRatio > 1 || playerHealthRatio <= 0)
+            throw new IllegalArgumentException("Player health ratio must be within range 0 < x >= 1");
+        else if (playerHealthRatio < 0.2)
             return availableActions.get("Light attack");
         else if (getCurrentMana() >= ((FireStrike)availableActions.get("Fire strike")).getManaCost())
             return availableActions.get("Fire strike");
