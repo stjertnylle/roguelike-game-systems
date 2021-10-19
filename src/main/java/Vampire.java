@@ -5,6 +5,7 @@ public class Vampire extends Monster {
 
     public Vampire(int level) {
         super(level);
+        setWeapon(new SwiftAxe());
     }
 
     @Override
