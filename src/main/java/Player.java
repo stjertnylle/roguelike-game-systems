@@ -1,10 +1,12 @@
 
 public abstract class Player extends Entity {
     private Inventory playerInventory;
+    private PotionInventory potionInventory;
 
     public Player(int level){
         super(level);
         this.playerInventory = new Inventory(this);
+        this.potionInventory = new PotionInventory(this);
         this.setWeapon(new SwiftAxe());
     }
 
@@ -29,6 +31,8 @@ public abstract class Player extends Entity {
     public Inventory getPlayerInventory(){
         return playerInventory;
     }
+
+    public PotionInventory getPotionInventory(){return potionInventory;}
 
     abstract Action getAction();
 }

@@ -2,7 +2,11 @@ import java.util.HashMap;
 import java.util.NoSuchElementException;
 
 public class PotionInventory {
-    private HashMap<Potion, Integer> potionBag = new HashMap<>();
+    private HashMap<Potion, Integer> potionBag;
+
+    public PotionInventory(Player player){
+        this.potionBag = new HashMap<>();
+    }
 
 
     public void add(Potion potion) {

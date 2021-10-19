@@ -41,17 +41,17 @@ public class InventoryTest {
         for(int i = 0; i < 6; i++){
             inventory.addWeapon(new SwiftAxe());
         }
-        assertEquals(inventory.isFull(), true);
+        assertTrue(inventory.isFull());
     }
     @Test
     void inventoryNotFullWhenEmpty(){
-        assertEquals(inventory.isFull(), false);
+        assertFalse(inventory.isFull());
     }
 
     @Test
     void inventoryNotFullWhenNotEmpty(){
         inventory.addWeapon(new SwiftAxe());
-        assertEquals(inventory.isFull(), false);
+        assertFalse(inventory.isFull());
     }
 
     @Test
