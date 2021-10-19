@@ -10,18 +10,21 @@ public abstract class Player extends Entity {
     }
 
     public void increaseXP(int xp){
-      this.getLevel().addXP(xp);
-      initializeHP(this.getLevel().getCurrentLevel());
-      initializeMana(this.getLevel().getCurrentLevel());
+        int oldLevel = this.getLevel().getCurrentLevel();
+        this.getLevel().addXP(xp);
+        int newLevel = this.getLevel().getCurrentLevel();
+        if(newLevel > oldLevel){
+        initializeHP(this.getLevel().getCurrentLevel());
+        initializeMana(this.getLevel().getCurrentLevel());}
     }
 
     public void equipWeapon(Weapon weapon){
         Weapon previousWeapon = this.getWeapon();
         super.setWeapon(weapon);
-        if(playerInventory.getWeapons().contains(weapon)){
+        if ( playerInventory.getWeapons().contains(weapon) ) {
             playerInventory.removeWeapon(weapon);
         }
-        if(playerInventory.isFull()){
+        if ( playerInventory.isFull() ) {
             return;
         }
         playerInventory.addWeapon(previousWeapon);
@@ -31,7 +34,9 @@ public abstract class Player extends Entity {
         return playerInventory;
     }
 
-    public PotionInventory getPotionInventory(){return potionInventory;}
+    public PotionInventory getPotionInventory(){
+        return potionInventory;
+    }
 
     abstract Action getAction();
 }

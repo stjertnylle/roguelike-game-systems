@@ -61,8 +61,8 @@ public class CombatSystemTest {
 
     MonsterWithLowHPSlowAttack monsterWithLowHPSlowAttack = new MonsterWithLowHPSlowAttack(1);
     MonsterWithLowHPFastAttack monsterWithLowHPFastAttack = new MonsterWithLowHPFastAttack(1);
-    LightAttack lightAttackFromPlayer = new LightAttack(player);
-    LightAttack lightAttackFromMonster = new LightAttack(player);
+    LightAttack lightAttackFromPlayer = new LightAttack(playerLevelOne);
+    LightAttack lightAttackFromMonster = new LightAttack(playerLevelOne);
     HeavyAttack heavyAttack = new HeavyAttack(player);
     Combat combat = new Combat(player,monsterWithLowHPSlowAttack);
 
@@ -128,6 +128,7 @@ public class CombatSystemTest {
 
     @Test
     void playerIsAwardedXpWhenTheyWinCombat(){
+        monsterWithLowHPSlowAttack.setHP(1);
         new Combat(playerLevelOne,monsterWithLowHPSlowAttack).startCombat();
         assertEquals(2,playerLevelOne.getLevel().getCurrentLevel());
     }
@@ -178,5 +179,19 @@ public class CombatSystemTest {
         assertFalse(standardPlayerWithHeavyAttack.getPlayerInventory().getWeapons().contains(potion));
     }
 
+    @Test
+    void monsterDiesWhenHitTwice(){
+        MonsterWithLowHPSlowAttack monsterWhoDiesButNoXPReward = new MonsterWithLowHPSlowAttack(1){
+            @Override
+            int getExpReward(){
+                return 0;
+            }
+        };
+        monsterWhoDiesButNoXPReward.setHP(4);
+        playerLevelOne.setHP(4);
+        new Combat(playerLevelOne, monsterWhoDiesButNoXPReward).startCombat();
+        assertEquals(0,monsterWhoDiesButNoXPReward.getCurrentHP());
+        assertEquals(1,playerLevelOne.getCurrentHP());
+    }
 
 }

@@ -72,16 +72,45 @@ public class LevelTest {
     }
 
      @Test
-    void playerHasCorrectHPWhenLevelledUp(){
+    void playerHasCorrectMaxHPWhenLevelledUp(){
          player.increaseXP(200);
          assertEquals(20 , player.getMaxHP());
      }
 
     @Test
-    void playerHasCorrectManaWhenLevelledUp(){
+    void playerHasCorrectMaxManaWhenLevelledUp(){
         player.increaseXP(200);
         assertEquals(20 , player.getMaxMana());
     }
+
+    @Test
+    void playerHealsFullyWhenLevelledUp(){
+        player.setHP(1);
+        player.increaseXP(200);
+        assertEquals(20 , player.getCurrentHP());
+    }
+
+    @Test
+    void playerHasCorrectCurrentHPWhenNotAwardedSufficientXPToLevel(){
+        player.setHP(1);
+        player.increaseXP(1);
+        assertEquals(1 , player.getCurrentHP());
+    }
+
+    @Test
+    void playerManaIsFullyRestoredWhenLevelledUp(){
+        player.setMana(1);
+        player.increaseXP(200);
+        assertEquals(20 , player.getCurrentMana());
+    }
+
+    @Test
+    void playerHasCorrectCurrentManaWhenNotAwardedSufficientXPToLevel(){
+        player.setMana(1);
+        player.increaseXP(1);
+        assertEquals(1 , player.getCurrentMana());
+    }
+
 
     @Test
     void XPIsCorrectWhenPlayerLevelsUp(){
