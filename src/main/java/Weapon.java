@@ -1,5 +1,5 @@
 public abstract class Weapon {
-    private String weaponName;
+    private final String weaponName;
 
     public Weapon(String weaponName){
         this.weaponName = weaponName;

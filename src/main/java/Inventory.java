@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Inventory {
-    private ArrayList<Weapon> weaponInventory;
-    private Player owner;
+    private final ArrayList<Weapon> weaponInventory;
+    private final Player owner;
 
     public Inventory(Player owner){
         this.weaponInventory = new ArrayList<Weapon>();
