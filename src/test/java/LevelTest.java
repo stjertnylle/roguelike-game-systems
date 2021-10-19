@@ -9,11 +9,6 @@ public class LevelTest {
         }
 
         @Override
-        public Weapon getWeapon() {
-            return new NoModifierWeapon();
-        }
-
-        @Override
         public Element getElement(){
             return null;
         }

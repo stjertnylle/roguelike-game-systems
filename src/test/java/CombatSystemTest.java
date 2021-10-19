@@ -15,7 +15,18 @@ public class CombatSystemTest {
 
         @Override
         public Weapon getWeapon(){
-            return new NoModifierWeapon();
+            return new Weapon("No Modifier Weapon") {
+
+                @Override
+                public double getDamageModifier() {
+                    return 1;
+                }
+
+                @Override
+                public double getSpeedModifier() {
+                    return 1;
+                }
+            };
         }
 
         @Override
@@ -32,7 +43,18 @@ public class CombatSystemTest {
 
         @Override
         public Weapon getWeapon(){
-            return new NoModifierWeapon();
+            return new Weapon("No Modifier Weapon") {
+
+                @Override
+                public double getDamageModifier() {
+                    return 1;
+                }
+
+                @Override
+                public double getSpeedModifier() {
+                    return 1;
+                }
+            };
         }
 
         @Override
@@ -59,8 +81,84 @@ public class CombatSystemTest {
         }
     };
 
-    MonsterWithLowHPSlowAttack monsterWithLowHPSlowAttack = new MonsterWithLowHPSlowAttack(1);
-    MonsterWithLowHPFastAttack monsterWithLowHPFastAttack = new MonsterWithLowHPFastAttack(1);
+    Monster monsterWithLowHPSlowAttack = new Monster(1) {
+
+        @Override
+        void initializeAvailableActions() {
+
+        }
+
+        @Override
+        public Weapon getWeapon() {
+            return new Weapon("No Modifier Weapon") {
+
+                @Override
+                public double getDamageModifier() {
+                    return 1;
+                }
+
+                @Override
+                public double getSpeedModifier() {
+                    return 1;
+                }
+            };
+        }
+
+        @Override
+        int getExpReward() {
+            return 160;
+        }
+
+        @Override
+        Action getAction(double playerHealthRatio) {
+            return new HeavyAttack(this);
+        }
+
+        @Override
+        public Element getElement() {
+            return null;
+        }
+
+    };
+
+    Monster monsterWithLowHPFastAttack = new Monster(1) {
+        @Override
+        void initializeAvailableActions() {
+
+        }
+
+        @Override
+        public Weapon getWeapon() {
+            return new Weapon("No Modifier Weapon") {
+
+                @Override
+                public double getDamageModifier() {
+                    return 1;
+                }
+
+                @Override
+                public double getSpeedModifier() {
+                    return 1;
+                }
+            };
+        }
+
+        @Override
+        int getExpReward() {
+            return 0;
+        }
+
+        @Override
+        Action getAction(double playerHealthRatio) {
+            return new LightAttack(this);
+        }
+
+        @Override
+        public Element getElement() {
+            return null;
+        }
+    };
+
     LightAttack lightAttackFromPlayer = new LightAttack(playerLevelOne);
     LightAttack lightAttackFromMonster = new LightAttack(playerLevelOne);
     HeavyAttack heavyAttack = new HeavyAttack(player);
@@ -181,11 +279,43 @@ public class CombatSystemTest {
 
     @Test
     void bothPlayerAndMonsterSurviveATurnWhenBothHPMoreThanZero(){
-        MonsterWithLowHPSlowAttack monsterWhoDiesButNoXPReward = new MonsterWithLowHPSlowAttack(1){
+        Monster monsterWhoDiesButNoXPReward = new Monster(1){
             @Override
-            int getExpReward(){
+            void initializeAvailableActions() {
+
+            }
+
+            @Override
+            public Weapon getWeapon() {
+                return new Weapon("No Modifier Weapon") {
+
+                    @Override
+                    public double getDamageModifier() {
+                        return 1;
+                    }
+
+                    @Override
+                    public double getSpeedModifier() {
+                        return 1;
+                    }
+                };
+            }
+
+            @Override
+            int getExpReward() {
                 return 0;
             }
+
+            @Override
+            Action getAction(double playerHealthRatio) {
+                return new HeavyAttack(this);
+            }
+
+            @Override
+            public Element getElement() {
+                return null;
+            }
+
         };
         monsterWhoDiesButNoXPReward.setHP(4);
         playerLevelOne.setHP(4);
