@@ -16,7 +16,9 @@ public class HeavyAttack implements Action {
 
     @Override
     public void apply(Entity target) {
-        if(target == user){
+        if(user.getWeapon() == null){
+            throw new IllegalStateException("Can't attack without weapon equipped");
+        }else if(target == user){
             throw new IllegalArgumentException("Can't target self with attack");
         }
         target.decreaseHP((int) Math.floor(getDamage() * user.getWeapon().getDamageModifier()));
