@@ -1,5 +1,4 @@
 public interface Action {
-    String getName();
 
     double getSpeed();
 

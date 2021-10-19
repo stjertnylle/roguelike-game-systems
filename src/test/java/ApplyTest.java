@@ -27,6 +27,7 @@ public class ApplyTest {
         LightAttack la = new LightAttack(player);
         la.apply(vampire);
         assertEquals(80, vampire.getCurrentHP());
+        assertEquals(7, la.getSpeed());
     }
 
     @Test
@@ -50,6 +51,7 @@ public class ApplyTest {
         HeavyAttack ha = new HeavyAttack(player);
         ha.apply(vampire);
         assertEquals(70, vampire.getCurrentHP());
+        assertEquals(5, ha.getSpeed());
     }
 
     @Test
@@ -85,9 +87,11 @@ public class ApplyTest {
     @Test
     void testFireStrikeVampire(){
         FireStrike fs = new FireStrike(player);
+        player.equipWeapon(new SwiftAxe());
         fs.apply(vampire);
         assertEquals(55, vampire.getCurrentHP());
         assertEquals(70, player.getCurrentMana());
+        assertEquals(5, fs.getSpeed());
     }
 
     @Test
@@ -120,6 +124,7 @@ public class ApplyTest {
         hs.apply(player);
         assertEquals(31, player.getCurrentHP());
         assertEquals(70, player.getCurrentMana());
+        assertEquals(6, hs.getSpeed());
     }
 
     @Test
@@ -141,8 +146,10 @@ public class ApplyTest {
     void testWindSlash(){
         WindSlash ws = new WindSlash(player);
         ws.apply(vampire);
+        player.equipWeapon(new SwiftAxe());
         assertEquals(80, vampire.getCurrentHP());
         assertEquals(80, player.getCurrentMana());
+        assertEquals(8, ws.getSpeed());
     }
 
     @Test
