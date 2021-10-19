@@ -38,7 +38,7 @@ public class FireStrike implements Action {
         }else if(user.getCurrentMana() < getManaCost()){
             throw new IllegalStateException("Not enough mana");
         }
-        target.decreaseHP((int) (getDamage() * element.getModifierAgainst(target.getElement())));
+        target.decreaseHP((int) Math.floor(getDamage() * element.getModifierAgainst(target.getElement())));
         user.decreaseMana(getManaCost());
     }
 }

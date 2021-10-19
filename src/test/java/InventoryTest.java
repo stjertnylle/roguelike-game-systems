@@ -49,14 +49,14 @@ public class InventoryTest {
     }
 
     @Test
-    void inventoryNotFullWhenNotEmpty(){
+    void inventoryNotFullAndNotEmpty(){
         inventory.addWeapon(new SwiftAxe());
         assertFalse(inventory.isFull());
     }
 
     @Test
-    void testEquippedBeginnerWeapon(){
-        assertEquals(player.getWeapon().getWeaponName(), new SwiftAxe().getWeaponName());
+    void testNoEquippedBeginnerWeapon(){
+        assertEquals(null, player.getWeapon());
     }
 
     @Test
