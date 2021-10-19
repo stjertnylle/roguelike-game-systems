@@ -22,7 +22,13 @@ public class HealingSpell implements Action {
 
     @Override
     public void apply(Entity target) {
-        // TODO: Implement!
+        if(target != user){
+            throw new IllegalArgumentException("Can't target monster with spell");
+        }else if(user.getCurrentMana() < getManaCost()){
+            throw new IllegalStateException("Not enough mana");
+        }
+        target.increaseHP(getHealAmount());
+        user.decreaseMana(getManaCost());
     }
 
     @Override

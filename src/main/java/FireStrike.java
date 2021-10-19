@@ -33,6 +33,13 @@ public class FireStrike implements Action {
 
     @Override
     public void apply(Entity target) {
-
+        if(target == user){
+            throw new IllegalArgumentException("Can't target self with spell");
+        }else if(user.getCurrentMana() < getManaCost()){
+            throw new IllegalStateException("Not enough mana");
+        }
+        target.decreaseHP((int) (getDamage() * element.getModifierAgainst(target.getElement())));
+        user.decreaseMana(getManaCost());
     }
 }
+
