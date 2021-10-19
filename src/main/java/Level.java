@@ -30,4 +30,8 @@ public class Level {
             xpToNextLevel *= 1.5;
         }
     }
+
+    public int getShownPlayerXP(){
+        return shownPlayerXP;
+    }
 }

@@ -46,4 +46,9 @@ public class Inventory {
         }
         return weaponInventory;
     }
+
+    public void clearInventory(){
+        if(!weaponInventory.isEmpty())
+            weaponInventory.clear();
+    }
 }

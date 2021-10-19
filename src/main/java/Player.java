@@ -7,7 +7,6 @@ public abstract class Player extends Entity {
         super(level);
         this.playerInventory = new Inventory(this);
         this.potionInventory = new PotionInventory(this);
-        this.setWeapon(new SwiftAxe());
     }
 
     public void increaseXP(int xp){

@@ -22,12 +22,12 @@ public class Combat {
             }
         }
         if ( this.player.getCurrentHP() <= 0 ) {
-            gameOver();
+            gameOver((Player)this.player);
             loser = this.player;
             return winner = this.monster;
         } else {
             loser = this.monster;
-            endCombat((Player) this.player,(Monster) this.loser);
+            endCombat((Player) this.player,(Monster) this.monster);
             return winner = this.player;
         }
     }
@@ -42,11 +42,10 @@ public class Combat {
         winner.increaseXP((loser.getExpReward()));
     }
 
-
-    public void gameOver(){
-        //TODO determine what happens when player dies
-        // Reset player level?
-        // Clear player inventory?
+    public void gameOver(Player player){
+        player.getLevel().setCurrentLevel(1);
+        player.getPlayerInventory().clearInventory();
+        player.getPotionInventory().clearPotionInventory();
     }
 
 }
