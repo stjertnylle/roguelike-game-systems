@@ -16,8 +16,10 @@ public class LightAttack implements Action {
 
     @Override
     public void apply(Entity target) {
-        // TODO: Implement!
-        target.decreaseHP(this.damage);
+        if(target == user){
+            throw new IllegalArgumentException("Can't target self with attack");
+        }
+        target.decreaseHP((int) (getDamage() * user.getWeapon().getDamageModifier()));
     }
 
     @Override

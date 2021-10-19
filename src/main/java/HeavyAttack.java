@@ -16,7 +16,10 @@ public class HeavyAttack implements Action {
 
     @Override
     public void apply(Entity target) {
-        // TODO: Implement!
+        if(target == user){
+            throw new IllegalArgumentException("Can't target self with attack");
+        }
+        target.decreaseHP((int) (getDamage() * user.getWeapon().getDamageModifier()));
     }
 
     @Override
