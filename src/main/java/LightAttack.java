@@ -16,7 +16,6 @@ public class LightAttack implements Action {
 
     @Override
     public void apply(Entity target) {
-        // TODO: Implement!
         target.decreaseHP(this.damage);
     }
 

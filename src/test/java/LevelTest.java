@@ -2,6 +2,22 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LevelTest {
+    Player player = new Player(1) {
+        @Override
+        Action getAction(){
+            return null;
+        }
+
+        @Override
+        public Weapon getWeapon() {
+            return new NoModifierWeapon();
+        }
+
+        @Override
+        public Element getElement(){
+            return null;
+        }
+    };
 
     @Test
     void currentLevelIsSetCorrectly(){
@@ -51,68 +67,25 @@ public class LevelTest {
 
     @Test
     void playerGetsCorrectLevelWhenAwardedXP(){
-        Player player = new Player(1) {
-            @Override
-            Action getAction(){
-                return null;
-            }
-
-            @Override
-            public Weapon getWeapon() {
-                return new NoModifierWeapon();
-            }
-
-            @Override
-            public Element getElement(){
-                return null;
-            }
-        };
         player.increaseXP(200);
         assertEquals(2, player.getLevel().getCurrentLevel());
     }
 
      @Test
     void playerHasCorrectHPWhenLevelledUp(){
-         Player player = new Player(1) {
-             @Override
-             public Weapon getWeapon() {
-                 return new NoModifierWeapon();
-             }
-
-             @Override
-             Action getAction(){
-                 return null;
-             }
-
-             @Override
-             public Element getElement(){
-                 return null;
-             }
-         };
          player.increaseXP(200);
          assertEquals(20 , player.getMaxHP());
      }
 
     @Test
     void playerHasCorrectManaWhenLevelledUp(){
-        Player player = new Player(1) {
-            @Override
-            public Weapon getWeapon() {
-                return new NoModifierWeapon();
-            }
-
-            @Override
-            Action getAction(){
-                return null;
-            }
-
-            @Override
-            public Element getElement(){
-                return null;
-            }
-        };
         player.increaseXP(200);
         assertEquals(20 , player.getMaxMana());
     }
 
+    @Test
+    void XPIsCorrectWhenPlayerLevelsUp(){
+        player.increaseXP(200);
+        assertEquals(100, player.getLevel().getShownPlayerXP());
+    }
 }
