@@ -95,7 +95,7 @@ public class ApplyTest {
     }
 
     @Test
-    void testFireSrtikeOrc(){
+    void testFireStrikeOrc(){
         FireStrike fs = new FireStrike(player);
         fs.apply(orc);
         assertEquals(70, orc.getCurrentHP());
