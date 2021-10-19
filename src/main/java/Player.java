@@ -1,12 +1,12 @@
 
 public abstract class Player extends Entity {
-    private Inventory playerInventory;
-    private PotionInventory potionInventory;
+    private final Inventory playerInventory;
+    private final PotionInventory potionInventory;
 
     public Player(int level){
         super(level);
         this.playerInventory = new Inventory(this);
-        this.potionInventory = new PotionInventory(this);
+        this.potionInventory = new PotionInventory();
     }
 
     public void increaseXP(int xp){

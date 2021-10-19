@@ -1,6 +1,6 @@
 public class DoubleAxe extends Weapon{
-    private double damageModifier = 1.7;
-    private double speedModifier = 0.3;
+    private final double damageModifier = 1.7;
+    private final double speedModifier = 0.3;
 
     public DoubleAxe() {
         super("Double Axe");
