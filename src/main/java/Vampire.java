@@ -25,7 +25,9 @@ public class Vampire extends Monster {
 
     @Override
     Action getAction(double playerHealthRatio) {
-        if (playerHealthRatio < 0.2) {
+        if (playerHealthRatio > 1 || playerHealthRatio <= 0)
+            throw new IllegalArgumentException("Player health ratio must be within range 0 < x >= 1");
+        else if (playerHealthRatio < 0.2) {
             if (getCurrentMana() >= ((WindSlash)availableActions.get("Wind slash")).getManaCost())
                 return availableActions.get("Wind slash");
             else
