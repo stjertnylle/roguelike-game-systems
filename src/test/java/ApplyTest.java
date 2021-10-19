@@ -32,8 +32,16 @@ public class ApplyTest {
     @Test
     void targetSelfLightAttack() {
         LightAttack la = new LightAttack(player);
+        player.setWeapon(new SwiftAxe());
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> la.apply(player));
         assertEquals("Can't target self with attack", e.getMessage());
+    }
+
+    @Test
+    void testLightAttackNoWeapon(){
+        LightAttack la = new LightAttack(player);
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> la.apply(vampire));
+        assertEquals("Can't attack without weapon equipped", e.getMessage());
     }
 
     @Test
@@ -60,8 +68,16 @@ public class ApplyTest {
     }
 
     @Test
+    void testHeavyAttackNoWeapon(){
+        HeavyAttack ha = new HeavyAttack(player);
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> ha.apply(orc));
+        assertEquals("Can't attack without weapon equipped", e.getMessage());
+    }
+
+    @Test
     void targetSelfHeavyAttack() {
         HeavyAttack ha = new HeavyAttack(player);
+        player.setWeapon(new SwiftAxe());
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> ha.apply(player));
         assertEquals("Can't target self with attack", e.getMessage());
     }

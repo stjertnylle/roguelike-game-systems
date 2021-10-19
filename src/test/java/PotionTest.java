@@ -23,8 +23,10 @@ public class PotionTest {
     @Test
     void testPlayerFullHP(){
         potionInventory.add(smallPOT);
+        int initialHP = player.getCurrentHP();
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> smallPOT.usePotion(player));
         assertEquals("Player HP already full", e.getMessage());
+        assertEquals(initialHP, player.getCurrentHP());
     }
 
     @Test
@@ -34,10 +36,18 @@ public class PotionTest {
     }
 
     @Test
-    void testPotionValue(){
-        assertEquals(smallMana.getValue(), 40);
+    void testSmallHealthPotionValue(){
         assertEquals(smallPOT.getValue(), 50);
+    }
+
+    @Test
+    void testLargeHealthPotionValue(){
         assertEquals(largePOT.getValue(), 100);
+    }
+
+    @Test
+    void testManaPotionValue(){
+        assertEquals(smallMana.getValue(), 40);
     }
 
     @Test
@@ -46,15 +56,15 @@ public class PotionTest {
         player.decreaseHP(60);
         potionInventory.add(smallPOT);
         smallPOT.usePotion(player);
-        assertEquals(player.getCurrentHP(), startHP - 10);
+        assertEquals(startHP - 10, player.getCurrentHP());
     }
 
     @Test
     void healingGreaterThanDamage(){
         player.decreaseHP(10);
-        potionInventory.add(smallPOT);
-        smallPOT.usePotion(player);
-        assertEquals(player.getMaxHP(), player.getCurrentHP());
+        potionInventory.add(largePOT);
+        largePOT.usePotion(player);
+        assertEquals(100, player.getCurrentHP());
     }
 
     @Test
@@ -78,6 +88,14 @@ public class PotionTest {
         player.decreaseMana(10);
         potionInventory.add(smallMana);
         smallMana.usePotion(player);
-        assertEquals(player.getMaxMana(), player.getCurrentMana());
+        assertEquals(100, player.getCurrentMana());
+    }
+
+    @Test
+    void deadPlayerUsePot(){
+        player.decreaseHP(101);
+        potionInventory.add(smallPOT);
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> smallPOT.usePotion(player));;
+        assertEquals("Can't use potion on dead player", e.getMessage());
     }
 }

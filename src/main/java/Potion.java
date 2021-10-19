@@ -1,6 +1,6 @@
 public abstract class Potion{
-    private String type;
-    private int value;
+    private final String type;
+    private final int value;
 
     public Potion(String type, int value){
         this.type = type;
@@ -8,7 +8,9 @@ public abstract class Potion{
     }
 
     public void usePotion(Player player){
-        if(!(player.getPotionInventory().contains(this))){
+        if(player.getCurrentHP() < 1){
+            throw new IllegalStateException("Can't use potion on dead player");
+        }else if(!(player.getPotionInventory().contains(this))){
             throw new IllegalArgumentException("Potion not in potion inventory");
         }
         if(this.getType().equals("Health")){
