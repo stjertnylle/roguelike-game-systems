@@ -1,7 +1,6 @@
 public class HeavyAttack implements Action {
     private final Entity user;
     private final int speed = 5;
-    private final String name = "Heavy attack";
     private final int damage;
 
     public HeavyAttack(Entity user) {
@@ -22,11 +21,6 @@ public class HeavyAttack implements Action {
             throw new IllegalArgumentException("Can't target self with attack");
         }
         target.decreaseHP((int) Math.floor(getDamage() * user.getWeapon().getDamageModifier()));
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override

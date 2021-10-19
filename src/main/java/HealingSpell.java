@@ -32,11 +32,6 @@ public class HealingSpell implements Action {
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
     public double getSpeed() {
         return speed;
     }

@@ -23,12 +23,6 @@ public class LightAttack implements Action {
         }
         target.decreaseHP((int) Math.floor(getDamage() * user.getWeapon().getDamageModifier()));
     }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
     @Override
     public double getSpeed() {
         return speed * user.getWeapon().getSpeedModifier();
