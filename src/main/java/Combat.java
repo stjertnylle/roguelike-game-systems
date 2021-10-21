@@ -1,5 +1,7 @@
 public class Combat {
-    Entity player, monster, winner, loser;
+    Entity player;
+    Entity monster;
+    Entity winner;
 
     public Combat(Entity player,Entity monster){
         this.player = player;
@@ -23,12 +25,10 @@ public class Combat {
         }
         if ( this.player.getCurrentHP() <= 0 ) {
             gameOver((Player)this.player);
-            loser = this.player;
-            return winner = this.monster;
+            return this.monster;
         } else {
-            loser = this.monster;
             endCombat((Player) this.player,(Monster) this.monster);
-            return winner = this.player;
+            return this.player;
         }
     }
 

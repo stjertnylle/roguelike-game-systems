@@ -95,7 +95,7 @@ public class PotionTest {
     void deadPlayerUsePot(){
         player.decreaseHP(101);
         potionInventory.add(smallPOT);
-        IllegalStateException e = assertThrows(IllegalStateException.class, () -> smallPOT.usePotion(player));;
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> smallPOT.usePotion(player));
         assertEquals("Can't use potion on dead player", e.getMessage());
     }
 }

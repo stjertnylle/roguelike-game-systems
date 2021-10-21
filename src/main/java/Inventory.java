@@ -5,15 +5,12 @@ public class Inventory {
     private final Player owner;
 
     public Inventory(Player owner){
-        this.weaponInventory = new ArrayList<Weapon>();
+        this.weaponInventory = new ArrayList<>();
         this.owner = owner;
     }
     public int maxSize(){
         int maxSize = owner.getLevel().getCurrentLevel() + 5;
-        if (maxSize > 30){
-            return 30;
-        }
-        return maxSize;
+        return Math.min(maxSize, 30);
     }
     public void addWeapon(Weapon weaponToAdd){
         if (isFull()){
@@ -40,9 +37,9 @@ public class Inventory {
     }
 
 
-    public ArrayList getWeapons(){
+    public ArrayList<Weapon> getWeapons(){
         if(weaponInventory.isEmpty()){
-            return new ArrayList();
+            return new ArrayList<>();
         }
         return weaponInventory;
     }

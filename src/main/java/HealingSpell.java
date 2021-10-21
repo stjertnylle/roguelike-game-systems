@@ -1,6 +1,5 @@
 public class HealingSpell implements Action {
     private final Entity user;
-    private final String name = "Healing spell";
     private final int speed = 6;
     private final int manaCost;
     private final int healAmount;
