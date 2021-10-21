@@ -10,10 +10,6 @@ public class CombatSystemTest {
         }
 
         @Override
-        public void increaseXP(int xp){
-        }
-
-        @Override
         public Weapon getWeapon(){
             return new Weapon("No Modifier Weapon") {
 
@@ -68,12 +64,6 @@ public class CombatSystemTest {
         public Element getElement(){
             return null;
         }
-
-        @Override
-        public void increaseXP(int xp){
-
-        }
-
 
         @Override
         Action getAction(){
@@ -182,7 +172,7 @@ public class CombatSystemTest {
     }
 
     @Test
-    void getFastestActionWhenBothActionsSameSpeed(){
+    void fastestActionIsPlayerActionWhenBothActionsSameSpeed(){
         assertEquals(lightAttackFromPlayer,combat.getFastestAction(lightAttackFromPlayer,lightAttackFromMonster));
     }
 
@@ -244,20 +234,20 @@ public class CombatSystemTest {
     }
 
     @Test
-    void playerLevelIsResetWhenGameOverIsCalled(){
+    void playerLevelIsResetWhenGameOverIsCalledDirectly(){
         Combat combat = new Combat(standardPlayerWithHeavyAttack, monsterWithLowHPFastAttack);
         combat.gameOver(standardPlayerWithHeavyAttack);
         assertEquals(1, standardPlayerWithHeavyAttack.getLevel().getCurrentLevel());
     }
     @Test
-    void playerLevelIsResetWhenDefeated(){
+    void playerLevelIsResetWhenGameOverIsCalledViaStartCombat(){
         standardPlayerWithHeavyAttack.setHP(1);
         new Combat(standardPlayerWithHeavyAttack, monsterWithLowHPFastAttack).startCombat();
         assertEquals(1, standardPlayerWithHeavyAttack.getLevel().getCurrentLevel());
     }
 
     @Test
-    void playerInventoryIsResetWhenGameOverIsCalled(){
+    void playerInventoryIsResetWhenGameOverIsCalledDirectly(){
         SwiftAxe swiftAxe  = new SwiftAxe();
         standardPlayerWithHeavyAttack.getPlayerInventory().addWeapon(swiftAxe);
         Combat combat = new Combat(standardPlayerWithHeavyAttack, monsterWithLowHPFastAttack);
@@ -265,7 +255,7 @@ public class CombatSystemTest {
         assertFalse(standardPlayerWithHeavyAttack.getPlayerInventory().getWeapons().contains(swiftAxe));
     }
     @Test
-    void playerInventoryIsResetWhenDefeated(){
+    void playerInventoryIsResetWhenWhenGameOverIsCalledViaStartCombat(){
         standardPlayerWithHeavyAttack.setHP(1);
         SwiftAxe swiftAxe  = new SwiftAxe();
         standardPlayerWithHeavyAttack.getPlayerInventory().addWeapon(swiftAxe);
@@ -273,7 +263,7 @@ public class CombatSystemTest {
         assertFalse(standardPlayerWithHeavyAttack.getPlayerInventory().getWeapons().contains(swiftAxe));
     }
     @Test
-    void playerPotionInventoryIsResetWhenGameOverIsCalled(){
+    void playerPotionInventoryIsResetWhenGameOverIsCalledDirectly(){
         SmallHealthPotion potion = new SmallHealthPotion();
         standardPlayerWithHeavyAttack.getPotionInventory().add(potion);
         Combat combat = new Combat(standardPlayerWithHeavyAttack, monsterWithLowHPFastAttack);
@@ -281,7 +271,7 @@ public class CombatSystemTest {
         assertFalse(standardPlayerWithHeavyAttack.getPotionInventory().contains(potion));
     }
     @Test
-    void playerPotionInventoryIsResetWhenDefeated(){
+    void playerPotionInventoryIsResetWhenGameOverIsCalledViaStartCombat(){
         standardPlayerWithHeavyAttack.setHP(1);
         SmallHealthPotion potion = new SmallHealthPotion();
         standardPlayerWithHeavyAttack.getPotionInventory().add(potion);
@@ -290,7 +280,7 @@ public class CombatSystemTest {
     }
 
     @Test
-    void bothPlayerAndMonsterSurviveATurnWhenBothHPMoreThanZeroWhenMonsterHasFastestAction(){
+    void bothPlayerAndMonsterSurviveATurnWhenBothHPMoreThanZero(){
         Monster monsterWhoDiesButNoXPReward = new Monster(1){
             @Override
             void initializeAvailableActions() {
