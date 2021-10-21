@@ -163,6 +163,18 @@ public class CombatSystemTest {
     LightAttack lightAttackFromMonster = new LightAttack(playerLevelOne);
     HeavyAttack heavyAttack = new HeavyAttack(player);
     Combat combat = new Combat(player,monsterWithLowHPSlowAttack);
+    Weapon noModWeapon = new Weapon("No mod weapon"){
+
+        @Override
+        public double getDamageModifier(){
+            return 1;
+        }
+
+        @Override
+        public double getSpeedModifier(){
+            return 1;
+        }
+    };
 
     @Test
     void getFastestAction(){
@@ -266,7 +278,7 @@ public class CombatSystemTest {
         standardPlayerWithHeavyAttack.getPotionInventory().add(potion);
         Combat combat = new Combat(standardPlayerWithHeavyAttack, monsterWithLowHPFastAttack);
         combat.gameOver(standardPlayerWithHeavyAttack);
-        assertFalse(standardPlayerWithHeavyAttack.getPlayerInventory().getWeapons().contains(potion));
+        assertFalse(standardPlayerWithHeavyAttack.getPotionInventory().contains(potion));
     }
     @Test
     void playerPotionInventoryIsResetWhenDefeated(){
@@ -274,11 +286,11 @@ public class CombatSystemTest {
         SmallHealthPotion potion = new SmallHealthPotion();
         standardPlayerWithHeavyAttack.getPotionInventory().add(potion);
         new Combat(standardPlayerWithHeavyAttack, monsterWithLowHPFastAttack).startCombat();
-        assertFalse(standardPlayerWithHeavyAttack.getPlayerInventory().getWeapons().contains(potion));
+        assertFalse(standardPlayerWithHeavyAttack.getPotionInventory().contains(potion));
     }
 
     @Test
-    void bothPlayerAndMonsterSurviveATurnWhenBothHPMoreThanZero(){
+    void bothPlayerAndMonsterSurviveATurnWhenBothHPMoreThanZeroWhenMonsterHasFastestAction(){
         Monster monsterWhoDiesButNoXPReward = new Monster(1){
             @Override
             void initializeAvailableActions() {
@@ -324,4 +336,19 @@ public class CombatSystemTest {
         assertEquals(1,playerLevelOne.getCurrentHP());
     }
 
+    @Test
+    void playerSurvivesFirstHitAndUsesAction(){
+        Orc orc = new Orc(1){
+            @Override
+            Action getAction(double playerHealthRatio) {
+                return new LightAttack(this);
+            }
+        };
+        orc.setHP(4);
+        orc.setWeapon(noModWeapon);
+        standardPlayerWithHeavyAttack.setHP(4);
+        new Combat(standardPlayerWithHeavyAttack, orc).startCombat();
+        assertEquals(4-30,orc.getCurrentHP());
+        assertEquals(2,standardPlayerWithHeavyAttack.getCurrentHP());
+    }
 }
