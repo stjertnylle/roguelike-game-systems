@@ -22,13 +22,13 @@ public class PotionInventoryTest {
 
     @Test
     void testEmptyBag(){
-        assertEquals(potionInventory.contains(smallHealthPotion), false);
+        assertFalse(potionInventory.contains(smallHealthPotion));
         assertEquals(potionInventory.count(smallHealthPotion), 0);
     }
     @Test
     void testNotEmptyBag(){
         potionInventory.add(smallHealthPotion);
-        assertEquals(potionInventory.contains(smallHealthPotion), true);
+        assertTrue(potionInventory.contains(smallHealthPotion));
         assertEquals(potionInventory.count(smallHealthPotion), 1);
     }
     @Test
@@ -37,19 +37,19 @@ public class PotionInventoryTest {
         potionInventory.add(smallHealthPotion);
         potionInventory.remove(smallHealthPotion);
         potionInventory.remove(smallHealthPotion);
-        assertEquals(potionInventory.contains(smallHealthPotion), false);
+        assertFalse(potionInventory.contains(smallHealthPotion));
         assertEquals(potionInventory.count(smallHealthPotion), 0);
     }
 
     @Test
-    void testAddingMutliple(){
+    void testAddingMultiple(){
         potionInventory.add(smallHealthPotion);
         potionInventory.add(smallHealthPotion);
         potionInventory.add(smallHealthPotion);
         potionInventory.add(largeHealthPotion);
         potionInventory.add(largeHealthPotion);
 
-        assertEquals(potionInventory.contains(smallHealthPotion), true);
+        assertTrue(potionInventory.contains(smallHealthPotion));
         assertEquals(potionInventory.count(smallHealthPotion), 3);
         assertEquals(potionInventory.count(largeHealthPotion), 2);
     }

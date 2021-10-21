@@ -1,7 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.NoSuchElementException;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class InventoryTest {
@@ -99,7 +97,7 @@ public class InventoryTest {
 
     @Test
     void testNoEquippedBeginnerWeapon(){
-        assertEquals(null, player.getWeapon());
+        assertNull(player.getWeapon());
     }
 
     @Test
