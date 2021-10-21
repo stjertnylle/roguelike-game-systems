@@ -163,6 +163,18 @@ public class CombatSystemTest {
     LightAttack lightAttackFromMonster = new LightAttack(playerLevelOne);
     HeavyAttack heavyAttack = new HeavyAttack(player);
     Combat combat = new Combat(player,monsterWithLowHPSlowAttack);
+    Weapon noModWeapon = new Weapon("No mod weapon"){
+
+        @Override
+        public double getDamageModifier(){
+            return 1;
+        }
+
+        @Override
+        public double getSpeedModifier(){
+            return 1;
+        }
+    };
 
     @Test
     void getFastestAction(){
@@ -278,7 +290,7 @@ public class CombatSystemTest {
     }
 
     @Test
-    void bothPlayerAndMonsterSurviveATurnWhenBothHPMoreThanZero(){
+    void bothPlayerAndMonsterSurviveATurnWhenBothHPMoreThanZeroWhenMonsterHasFastestAction(){
         Monster monsterWhoDiesButNoXPReward = new Monster(1){
             @Override
             void initializeAvailableActions() {
@@ -323,5 +335,22 @@ public class CombatSystemTest {
         assertEquals(0,monsterWhoDiesButNoXPReward.getCurrentHP());
         assertEquals(1,playerLevelOne.getCurrentHP());
     }
+
+    @Test
+    void playerSurvivesFirstHit(){
+        Orc orc = new Orc(1){
+            @Override
+            Action getAction(double playerHealthRatio) {
+                return new LightAttack(this);
+            }
+        };
+        orc.setHP(4);
+        orc.setWeapon(noModWeapon);
+        standardPlayerWithHeavyAttack.setHP(4);
+        new Combat(standardPlayerWithHeavyAttack, orc).startCombat();
+        assertEquals(4-30,orc.getCurrentHP());
+        assertEquals(2,standardPlayerWithHeavyAttack.getCurrentHP());
+    }
+
 
 }
