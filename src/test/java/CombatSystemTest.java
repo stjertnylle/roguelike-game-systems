@@ -84,7 +84,7 @@ public class CombatSystemTest {
     Monster monsterWithLowHPSlowAttack = new Monster(1) {
 
         @Override
-        void initializeAvailableActions() {
+        protected void initializeAvailableActions() {
 
         }
 
@@ -105,12 +105,12 @@ public class CombatSystemTest {
         }
 
         @Override
-        int getExpReward() {
+        protected int getExpReward() {
             return 160;
         }
 
         @Override
-        Action getAction(double playerHealthRatio) {
+        protected Action getAction(double playerHealthRatio) {
             return new HeavyAttack(this);
         }
 
@@ -123,7 +123,7 @@ public class CombatSystemTest {
 
     Monster monsterWithLowHPFastAttack = new Monster(1) {
         @Override
-        void initializeAvailableActions() {
+        protected void initializeAvailableActions() {
 
         }
 
@@ -144,12 +144,12 @@ public class CombatSystemTest {
         }
 
         @Override
-        int getExpReward() {
+        protected int getExpReward() {
             return 0;
         }
 
         @Override
-        Action getAction(double playerHealthRatio) {
+        protected Action getAction(double playerHealthRatio) {
             return new LightAttack(this);
         }
 
@@ -293,7 +293,7 @@ public class CombatSystemTest {
     void bothPlayerAndMonsterSurviveATurnWhenBothHPMoreThanZeroWhenMonsterHasFastestAction(){
         Monster monsterWhoDiesButNoXPReward = new Monster(1){
             @Override
-            void initializeAvailableActions() {
+            protected void initializeAvailableActions() {
 
             }
 
@@ -314,12 +314,12 @@ public class CombatSystemTest {
             }
 
             @Override
-            int getExpReward() {
+            protected int getExpReward() {
                 return 0;
             }
 
             @Override
-            Action getAction(double playerHealthRatio) {
+            protected Action getAction(double playerHealthRatio) {
                 return new HeavyAttack(this);
             }
 
@@ -340,7 +340,7 @@ public class CombatSystemTest {
     void playerSurvivesFirstHitAndUsesAction(){
         Orc orc = new Orc(1){
             @Override
-            Action getAction(double playerHealthRatio) {
+            protected Action getAction(double playerHealthRatio) {
                 return new LightAttack(this);
             }
         };

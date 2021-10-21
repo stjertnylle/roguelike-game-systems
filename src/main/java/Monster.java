@@ -7,7 +7,7 @@ public abstract class Monster extends Entity {
     }
 
     // Abstract methods, each monster type will have its own behaviour
-    abstract void initializeAvailableActions();
-    abstract int getExpReward();
-    abstract Action getAction(double playerHealthRatio);
+    protected abstract void initializeAvailableActions();
+    protected abstract int getExpReward();
+    protected abstract Action getAction(double playerHealthRatio);
 }

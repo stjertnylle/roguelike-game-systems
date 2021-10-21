@@ -14,7 +14,7 @@ public class Vampire extends Monster {
     }
 
     @Override
-    void initializeAvailableActions() {
+    protected void initializeAvailableActions() {
         availableActions = new HashMap<>();
         availableActions.put("Light attack", new LightAttack(this));
         availableActions.put("Heavy attack", new HeavyAttack(this));
@@ -24,7 +24,7 @@ public class Vampire extends Monster {
     }
 
     @Override
-    Action getAction(double playerHealthRatio) {
+    protected Action getAction(double playerHealthRatio) {
         if (playerHealthRatio > 1 || playerHealthRatio <= 0)
             throw new IllegalArgumentException("Player health ratio must be within range 0 < x >= 1");
         else if (playerHealthRatio < 0.2) {
@@ -42,7 +42,7 @@ public class Vampire extends Monster {
     }
 
     @Override
-    int getExpReward() {
+    protected int getExpReward() {
         return getLevel().getCurrentLevel() * 10;
     }
 }
