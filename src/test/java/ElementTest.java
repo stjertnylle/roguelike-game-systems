@@ -37,12 +37,8 @@ class ElementTest {
 
     @Test
     void testExceptionThrownIfElementSentToWaterDoesNotExistInSystem() {
-        IllegalStateException e = assertThrows(IllegalStateException.class, () -> water.getModifierAgainst(new Element() {
-            @Override
-            public double getModifierAgainst(Element element) {
-                return 0;
-            }
-        }));
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> water.getModifierAgainst(element -> 0));
+        assertEquals("This element does not exist in the magic system!", e.getMessage());
     }
 
     @Test
@@ -73,12 +69,8 @@ class ElementTest {
 
     @Test
     void testExceptionThrownIfElementSentToFireDoesNotExistInSystem() {
-        IllegalStateException e = assertThrows(IllegalStateException.class, () -> fire.getModifierAgainst(new Element() {
-            @Override
-            public double getModifierAgainst(Element element) {
-                return 0;
-            }
-        }));
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> fire.getModifierAgainst(element -> 0));
+        assertEquals("This element does not exist in the magic system!", e.getMessage());
     }
 
     @Test
@@ -109,12 +101,8 @@ class ElementTest {
 
     @Test
     void testExceptionThrownIfElementSentToAirDoesNotExistInSystem() {
-        IllegalStateException e = assertThrows(IllegalStateException.class, () -> air.getModifierAgainst(new Element() {
-            @Override
-            public double getModifierAgainst(Element element) {
-                return 0;
-            }
-        }));
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> air.getModifierAgainst(element -> 0));
+        assertEquals("This element does not exist in the magic system!", e.getMessage());
     }
 
     @Test
@@ -145,12 +133,8 @@ class ElementTest {
 
     @Test
     void testExceptionThrownIfElementSentToEarthDoesNotExistInSystem() {
-        IllegalStateException e = assertThrows(IllegalStateException.class, () -> earth.getModifierAgainst(new Element() {
-            @Override
-            public double getModifierAgainst(Element element) {
-                return 0;
-            }
-        }));
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> earth.getModifierAgainst(element -> 0));
+        assertEquals("This element does not exist in the magic system!", e.getMessage());
     }
 
 }

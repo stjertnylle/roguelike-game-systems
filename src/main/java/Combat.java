@@ -1,5 +1,7 @@
 public class Combat {
-    Entity player, monster;
+    Entity player;
+    Entity monster;
+    Entity winner;
 
     public Combat(Entity player,Entity monster){
         this.player = player;

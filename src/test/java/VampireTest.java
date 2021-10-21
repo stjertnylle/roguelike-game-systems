@@ -10,7 +10,7 @@ class VampireTest {
     // This is the reason why the rest of the names aren't very descriptive.
 
     @Test
-    void Should_ChooseWindSlash_When_PlayerHealthRatioisLessThanTwentyProcentAndManaRatioHigherThanOrEqualToTwentyProcent() {
+    void Should_ChooseWindSlash_When_PlayerHealthRatioIsLessThanTwentyProcentAndManaRatioHigherThanOrEqualToTwentyPercent() {
         vampire.setMana(50);
         assertEquals(WindSlash.class, vampire.getAction(0.1).getClass());
     }
