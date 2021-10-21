@@ -278,7 +278,7 @@ public class CombatSystemTest {
         standardPlayerWithHeavyAttack.getPotionInventory().add(potion);
         Combat combat = new Combat(standardPlayerWithHeavyAttack, monsterWithLowHPFastAttack);
         combat.gameOver(standardPlayerWithHeavyAttack);
-        assertFalse(standardPlayerWithHeavyAttack.getPlayerInventory().getWeapons().contains(potion));
+        assertFalse(standardPlayerWithHeavyAttack.getPotionInventory().contains(potion));
     }
     @Test
     void playerPotionInventoryIsResetWhenDefeated(){
@@ -286,7 +286,7 @@ public class CombatSystemTest {
         SmallHealthPotion potion = new SmallHealthPotion();
         standardPlayerWithHeavyAttack.getPotionInventory().add(potion);
         new Combat(standardPlayerWithHeavyAttack, monsterWithLowHPFastAttack).startCombat();
-        assertFalse(standardPlayerWithHeavyAttack.getPlayerInventory().getWeapons().contains(potion));
+        assertFalse(standardPlayerWithHeavyAttack.getPotionInventory().contains(potion));
     }
 
     @Test
@@ -337,7 +337,7 @@ public class CombatSystemTest {
     }
 
     @Test
-    void playerSurvivesFirstHit(){
+    void playerSurvivesFirstHitAndUsesAction(){
         Orc orc = new Orc(1){
             @Override
             Action getAction(double playerHealthRatio) {
@@ -351,6 +351,4 @@ public class CombatSystemTest {
         assertEquals(4-30,orc.getCurrentHP());
         assertEquals(2,standardPlayerWithHeavyAttack.getCurrentHP());
     }
-
-
 }
