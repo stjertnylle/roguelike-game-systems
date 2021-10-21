@@ -167,7 +167,7 @@ public class CombatSystemTest {
     };
 
     @Test
-    void getFastestAction(){
+    void getFastestActionReturnsFastestAction(){
         assertEquals(lightAttackFromPlayer,combat.getFastestAction(lightAttackFromPlayer,heavyAttack));
     }
 
