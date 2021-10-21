@@ -10,10 +10,7 @@ public class Inventory {
     }
     public int maxSize(){
         int maxSize = owner.getLevel().getCurrentLevel() + 5;
-        if (maxSize > 30){
-            return 30;
-        }
-        return maxSize;
+        return Math.min(maxSize, 30);
     }
     public void addWeapon(Weapon weaponToAdd){
         if (isFull()){
