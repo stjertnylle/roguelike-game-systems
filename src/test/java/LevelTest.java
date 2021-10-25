@@ -106,7 +106,6 @@ public class LevelTest {
         assertEquals(1 , player.getCurrentMana());
     }
 
-
     @Test
     void XPIsCorrectWhenPlayerLevelsUp(){
         player.increaseXP(200);
