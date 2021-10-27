@@ -29,6 +29,11 @@ class OrcTest {
         assertEquals(HeavyAttack.class, orc.getAction(0.99).getClass());
     }
 
+    @Test
+    void testExpRewardCalculatedCorrectly() {
+        assertEquals(50, orc.getExpReward());
+    }
+
     // Testing exceptions when playerHealthRatio argument is not within required range
     @Test
     void testExceptionThrownWhenPlayerHealthRatioAboveOne() {
