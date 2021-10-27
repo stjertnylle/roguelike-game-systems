@@ -188,7 +188,6 @@ class VampireTest {
     // Testing exp reward
     @Test
     void testExpRewardCalculatedCorrectly() {
-        Vampire vampire = new Vampire(10);
         assertEquals(100, vampire.getExpReward());
     }
 
