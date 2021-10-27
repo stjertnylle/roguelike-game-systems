@@ -2,8 +2,8 @@ public class Level {
     private int currentLevel;
     private int shownPlayerXP;
     private int xpToNextLevel;
-    private final int MAX_LEVEL = 100;
-    private final double XP_INCREMENT = 1.5;
+    private final static int MAX_LEVEL = 100;
+    private final static double XP_INCREMENT = 1.5;
 
     public Level(int level){
         setCurrentLevel(level);
