@@ -1,7 +1,6 @@
 public class LightAttack implements Action {
     private final Entity user;
     private final int speed = 7;
-    private final String name = "Light attack";
     private final int damage;
 
     public LightAttack(Entity user) {

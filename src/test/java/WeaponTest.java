@@ -5,8 +5,8 @@ public class WeaponTest {
     @Test
     void newSwiftAxe(){
         SwiftAxe swiftAxe = new SwiftAxe();
-        assertEquals(1, swiftAxe.getSpeedModifier());
-        assertEquals(1, swiftAxe.getDamageModifier());
+        assertEquals(1.5, swiftAxe.getSpeedModifier());
+        assertEquals(0.5, swiftAxe.getDamageModifier());
     }
     @Test
     void newDoubleAxe(){

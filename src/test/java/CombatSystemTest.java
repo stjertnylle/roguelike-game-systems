@@ -10,12 +10,19 @@ public class CombatSystemTest {
         }
 
         @Override
-        public void increaseXP(int xp){
-        }
-
-        @Override
         public Weapon getWeapon(){
-            return new NoModifierWeapon();
+            return new Weapon("No Modifier Weapon") {
+
+                @Override
+                public double getDamageModifier() {
+                    return 1;
+                }
+
+                @Override
+                public double getSpeedModifier() {
+                    return 1;
+                }
+            };
         }
 
         @Override
@@ -32,7 +39,18 @@ public class CombatSystemTest {
 
         @Override
         public Weapon getWeapon(){
-            return new NoModifierWeapon();
+            return new Weapon("No Modifier Weapon") {
+
+                @Override
+                public double getDamageModifier() {
+                    return 1;
+                }
+
+                @Override
+                public double getSpeedModifier() {
+                    return 1;
+                }
+            };
         }
 
         @Override
@@ -48,33 +66,105 @@ public class CombatSystemTest {
         }
 
         @Override
-        public void increaseXP(int xp){
-
-        }
-
-
-        @Override
         Action getAction(){
             return heavyAttack;
         }
     };
 
-    MonsterWithLowHPSlowAttack monsterWithLowHPSlowAttack = new MonsterWithLowHPSlowAttack(1);
-    MonsterWithLowHPFastAttack monsterWithLowHPFastAttack = new MonsterWithLowHPFastAttack(1);
+    Monster monsterWithLowHPSlowAttack = new Monster(1) {
+
+        @Override
+        protected void initializeAvailableActions() {
+
+        }
+
+        @Override
+        public Weapon getWeapon() {
+            return new Weapon("No Modifier Weapon") {
+
+                @Override
+                public double getDamageModifier() {
+                    return 1;
+                }
+
+                @Override
+                public double getSpeedModifier() {
+                    return 1;
+                }
+            };
+        }
+
+        @Override
+        protected int getExpReward() {
+            return 160;
+        }
+
+        @Override
+        protected Action getAction(double playerHealthRatio) {
+            return new HeavyAttack(this);
+        }
+
+        @Override
+        public Element getElement() {
+            return null;
+        }
+
+    };
+
+    Monster monsterWithLowHPFastAttack = new Monster(1) {
+        @Override
+        protected void initializeAvailableActions() {
+
+        }
+
+        @Override
+        public Weapon getWeapon() {
+            return new Weapon("No Modifier Weapon") {
+
+                @Override
+                public double getDamageModifier() {
+                    return 1;
+                }
+
+                @Override
+                public double getSpeedModifier() {
+                    return 1;
+                }
+            };
+        }
+
+        @Override
+        protected int getExpReward() {
+            return 0;
+        }
+
+        @Override
+        protected Action getAction(double playerHealthRatio) {
+            return new LightAttack(this);
+        }
+
+        @Override
+        public Element getElement() {
+            return null;
+        }
+    };
+
     LightAttack lightAttackFromPlayer = new LightAttack(playerLevelOne);
     LightAttack lightAttackFromMonster = new LightAttack(playerLevelOne);
     HeavyAttack heavyAttack = new HeavyAttack(player);
     Combat combat = new Combat(player,monsterWithLowHPSlowAttack);
+    Weapon noModWeapon = new Weapon("No mod weapon"){
 
-    @Test
-    void getFastestAction(){
-        assertEquals(lightAttackFromPlayer,combat.getFastestAction(lightAttackFromPlayer,heavyAttack));
-    }
+        @Override
+        public double getDamageModifier(){
+            return 1;
+        }
 
-    @Test
-    void getFastestActionWhenBothActionsSameSpeed(){
-        assertEquals(lightAttackFromPlayer,combat.getFastestAction(lightAttackFromPlayer,lightAttackFromMonster));
-    }
+        @Override
+        public double getSpeedModifier(){
+            return 1;
+        }
+    };
 
     @Test
     void combatEndsWhenHPLessThanZeroForMonster(){
@@ -120,11 +210,7 @@ public class CombatSystemTest {
         assertEquals(1,monsterWithLowHPFastAttack.getCurrentHP());
     }
 
-    @Test
-    void playerIsAwardedXPWhenEndCombatIsCalled(){
-        combat.endCombat(playerLevelOne,monsterWithLowHPSlowAttack);
-        assertEquals(2,playerLevelOne.getLevel().getCurrentLevel());
-    }
+
 
     @Test
     void playerIsAwardedXpWhenTheyWinCombat(){
@@ -133,59 +219,71 @@ public class CombatSystemTest {
         assertEquals(2,playerLevelOne.getLevel().getCurrentLevel());
     }
 
+
     @Test
-    void playerLevelIsResetWhenGameOverIsCalled(){
-        Combat combat = new Combat(standardPlayerWithHeavyAttack, monsterWithLowHPFastAttack);
-        combat.gameOver(standardPlayerWithHeavyAttack);
-        assertEquals(1, standardPlayerWithHeavyAttack.getLevel().getCurrentLevel());
-    }
-    @Test
-    void playerLevelIsResetWhenDefeated(){
+    void playerLevelIsResetWhenGameOverIsCalledViaStartCombat(){
         standardPlayerWithHeavyAttack.setHP(1);
         new Combat(standardPlayerWithHeavyAttack, monsterWithLowHPFastAttack).startCombat();
         assertEquals(1, standardPlayerWithHeavyAttack.getLevel().getCurrentLevel());
     }
 
     @Test
-    void playerInventoryIsResetWhenGameOverIsCalled(){
-        SwiftAxe swiftAxe  = new SwiftAxe();
-        standardPlayerWithHeavyAttack.getPlayerInventory().addWeapon(swiftAxe);
-        Combat combat = new Combat(standardPlayerWithHeavyAttack, monsterWithLowHPFastAttack);
-        combat.gameOver(standardPlayerWithHeavyAttack);
-        assertFalse(standardPlayerWithHeavyAttack.getPlayerInventory().getWeapons().contains(swiftAxe));
-    }
-    @Test
-    void playerInventoryIsResetWhenDefeated(){
+    void playerInventoryIsResetWhenWhenGameOverIsCalledViaStartCombat(){
         standardPlayerWithHeavyAttack.setHP(1);
         SwiftAxe swiftAxe  = new SwiftAxe();
         standardPlayerWithHeavyAttack.getPlayerInventory().addWeapon(swiftAxe);
         new Combat(standardPlayerWithHeavyAttack, monsterWithLowHPFastAttack).startCombat();
         assertFalse(standardPlayerWithHeavyAttack.getPlayerInventory().getWeapons().contains(swiftAxe));
     }
+
     @Test
-    void playerPotionInventoryIsResetWhenGameOverIsCalled(){
-        SmallHealthPotion potion = new SmallHealthPotion();
-        standardPlayerWithHeavyAttack.getPotionInventory().add(potion);
-        Combat combat = new Combat(standardPlayerWithHeavyAttack, monsterWithLowHPFastAttack);
-        combat.gameOver(standardPlayerWithHeavyAttack);
-        assertFalse(standardPlayerWithHeavyAttack.getPlayerInventory().getWeapons().contains(potion));
-    }
-    @Test
-    void playerPotionInventoryIsResetWhenDefeated(){
+    void playerPotionInventoryIsResetWhenGameOverIsCalledViaStartCombat(){
         standardPlayerWithHeavyAttack.setHP(1);
         SmallHealthPotion potion = new SmallHealthPotion();
         standardPlayerWithHeavyAttack.getPotionInventory().add(potion);
         new Combat(standardPlayerWithHeavyAttack, monsterWithLowHPFastAttack).startCombat();
-        assertFalse(standardPlayerWithHeavyAttack.getPlayerInventory().getWeapons().contains(potion));
+        assertFalse(standardPlayerWithHeavyAttack.getPotionInventory().contains(potion));
     }
 
     @Test
     void bothPlayerAndMonsterSurviveATurnWhenBothHPMoreThanZero(){
-        MonsterWithLowHPSlowAttack monsterWhoDiesButNoXPReward = new MonsterWithLowHPSlowAttack(1){
+        Monster monsterWhoDiesButNoXPReward = new Monster(1){
             @Override
-            int getExpReward(){
+            protected void initializeAvailableActions() {
+
+            }
+
+            @Override
+            public Weapon getWeapon() {
+                return new Weapon("No Modifier Weapon") {
+
+                    @Override
+                    public double getDamageModifier() {
+                        return 1;
+                    }
+
+                    @Override
+                    public double getSpeedModifier() {
+                        return 1;
+                    }
+                };
+            }
+
+            @Override
+            protected int getExpReward() {
                 return 0;
             }
+
+            @Override
+            protected Action getAction(double playerHealthRatio) {
+                return new HeavyAttack(this);
+            }
+
+            @Override
+            public Element getElement() {
+                return null;
+            }
+
         };
         monsterWhoDiesButNoXPReward.setHP(4);
         playerLevelOne.setHP(4);
@@ -194,4 +292,19 @@ public class CombatSystemTest {
         assertEquals(1,playerLevelOne.getCurrentHP());
     }
 
+    @Test
+    void playerSurvivesFirstHitAndUsesAction(){
+        Orc orc = new Orc(1){
+            @Override
+            protected Action getAction(double playerHealthRatio) {
+                return new LightAttack(this);
+            }
+        };
+        orc.setHP(4);
+        orc.setWeapon(noModWeapon);
+        standardPlayerWithHeavyAttack.setHP(4);
+        new Combat(standardPlayerWithHeavyAttack, orc).startCombat();
+        assertEquals(4-30,orc.getCurrentHP());
+        assertEquals(2,standardPlayerWithHeavyAttack.getCurrentHP());
+    }
 }

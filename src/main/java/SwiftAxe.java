@@ -1,6 +1,6 @@
 public class SwiftAxe extends Weapon {
-    private final double damageModifier = 1 ;
-    private final double speedModifier = 1;
+    private final double damageModifier = 0.5 ;
+    private final double speedModifier = 1.5;
 
     public SwiftAxe() {
         super("Swift Axe");

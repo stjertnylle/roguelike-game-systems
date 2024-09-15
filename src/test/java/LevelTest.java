@@ -9,11 +9,6 @@ public class LevelTest {
         }
 
         @Override
-        public Weapon getWeapon() {
-            return new NoModifierWeapon();
-        }
-
-        @Override
         public Element getElement(){
             return null;
         }
@@ -24,6 +19,7 @@ public class LevelTest {
         Level levelOne = new Level(1);
         assertEquals(1, levelOne.getCurrentLevel());
     }
+
     @Test
     void levelIsNotIncreasedWhenAddingInsufficientXP(){
         Level levelOne = new Level(1);
@@ -40,9 +36,9 @@ public class LevelTest {
 
     @Test
     void levelIsIncreasedWhenAddingSufficientXPForLevelTwo(){
-        Level levelOne = new Level(2);
-        levelOne.addXP(200);
-        assertEquals(3, levelOne.getCurrentLevel());
+        Level levelTwo = new Level(2);
+        levelTwo.addXP(200);
+        assertEquals(3, levelTwo.getCurrentLevel());
     }
 
     @Test
@@ -110,7 +106,6 @@ public class LevelTest {
         player.increaseXP(1);
         assertEquals(1 , player.getCurrentMana());
     }
-
 
     @Test
     void XPIsCorrectWhenPlayerLevelsUp(){
